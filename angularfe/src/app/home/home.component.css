@@ -1,0 +1,36 @@
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+
+nz-carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+nz-carousel .slick-slide {
+  position: relative;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+nz-carousel .slick-slide.slick-active {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+nz-carousel .slick-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+

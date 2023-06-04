@@ -1,0 +1,86 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a >
+        <img src="https://logos-world.net/wp-content/uploads/2022/01/Autobots-Logo.png" alt="logo" style="width: 24px; height: 24px; object-fit: cover;">
+
+        <a href="#" class="navbar-brand" style="margin-left: 10px;">
+          <i  class="nav-link-icon"></i>
+          MENU
+        </a>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item>
+        <span nz-icon nzType="home" routerLink="/home"></span>
+        <span  class="nav-link" routerLink="/home">Home</span>
+      </li>
+      <li nz-submenu nzTitle="User" nzIcon="user" *ngIf="isLoggedIn">
+        <ul>
+          <li nz-menu-item class="nav-link" routerLink="/profile">{{ username }}</li>
+          <li nz-menu-item>Đổi thông tin</li>
+          <li nz-menu-item>Cài đặt</li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard" *ngIf="isLoggedIn">
+        
+        <ul>
+          <li nz-menu-item nzMatchRouter *ngIf="showAdminBoard">
+            <a routerLink="/admin">Admin board</a>
+          </li>
+          <li nz-menu-item nzMatchRouter *ngIf="showModeratorBoard">
+            <a routerLink="/moderator">Moderatorboard</a>
+          </li>
+          <li nz-menu-item nzMatchRouter *ngIf="isLoggedIn">
+            <a routerLink="/user">Userboard</a>
+          </li>
+          
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Edit" nzIcon="form" *ngIf="showAdminBoard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/usertable">Quản lý user, role</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/menutable">Quản lý Menu</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item *ngIf="!isLoggedIn">
+        <span nz-icon nzType="login" nzTheme="outline"></span>
+        <span  class="nav-link" routerLink="/login">Login</span>
+      </li>
+      <li nz-menu-item *ngIf="!isLoggedIn">
+        <span nz-icon nzType="login" nzTheme="outline"></span>
+        <span  class="nav-link" routerLink="/register">Register</span>
+      </li>
+      <li nz-menu-item *ngIf="isLoggedIn">
+        <span nz-icon nzType="logout" nzTheme="outline" class="nav-link" (click)="logout()"></span>
+        <span (click)="logout()">Logout</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

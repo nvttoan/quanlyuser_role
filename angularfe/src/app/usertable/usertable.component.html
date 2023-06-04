@@ -1,0 +1,35 @@
+<ng-container>
+    <!-- <button nz-button nzType="primary" nzSize="large" routerLink="create-user" routerLinkActive="active">Add User</button> -->
+    
+    <h2 class="text-center" style="margin-top: 48px;">User List</h2>
+    <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="users">
+      <thead>
+        <tr>
+          <th>username</th>
+          <th>email</th>
+          <th>password</th>
+          <th>roles</th>
+          <th>Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <ng-container *ngFor="let role of user.roles; let last = last">
+              {{ role.name }}{{ !last ? ', ' : '' }}
+            </ng-container>
+          </td>
+
+          <td>
+            <button nz-button nzType="primary" nzSize="small" (click)="updateUser(user.id)">Update</button>
+            <button nz-button nzType="danger" nzSize="small" (click)="deleteUser(user.id)" nzStyle="margin-left: 10px">Delete</button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>

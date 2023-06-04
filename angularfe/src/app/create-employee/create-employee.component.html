@@ -1,0 +1,75 @@
+<form nz-form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <h1>Create Employee</h1>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'firstName'">First Name</nz-form-label>
+      <nz-form-control [nzErrorTip]="firstname.errors && f.submitted">
+        <input
+          nz-input
+          id="firstName"
+          [(ngModel)]="employee.firstName"
+          name="firstName"
+          type="text"
+          required
+          #firstname="ngModel"
+          [(ngModel)]="form.firstname"
+          pattern="^[a-zA\u00C0-\u017F]+$"
+          [ngClass]="{ 'is-invalid': f.submitted && firstname.errors }"
+        />
+        <nz-form-explain *ngIf="firstname.errors && f.submitted">
+          <div class="error-message" *ngIf="firstname.errors['required']">First name is required</div>
+          <div class="error-message" *ngIf="firstname.errors['pattern']">First name must contain only letters</div>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzFor]="'lastName'">Last Name</nz-form-label>
+      <nz-form-control [nzErrorTip]="lastname.errors && f.submitted">
+        <input
+          nz-input
+          id="lastName"
+          [(ngModel)]="employee.lastName"
+          name="lastName"
+          type="text"
+          required
+          #lastname="ngModel"
+          [(ngModel)]="form.lastname"
+          pattern="^[a-zA\u00C0-\u017F]+$"
+          [ngClass]="{ 'is-invalid': f.submitted && lastname.errors }"
+        />
+        <nz-form-explain *ngIf="lastname.errors && f.submitted">
+          <div  class="error-message" *ngIf="lastname.errors['required']">Last name is required</div>
+          <div  class="error-message" *ngIf="lastname.errors['pattern']">Last name must contain only letters</div>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzFor]="'email'">Email Id</nz-form-label>
+      <nz-form-control [nzErrorTip]="email.errors && f.submitted">
+        <input
+          nz-input
+          id="emailId"
+          [(ngModel)]="employee.emailId"
+
+          type="email"
+          name="emailId"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+        />
+        <nz-form-explain *ngIf="email.errors && f.submitted">
+          <div class="error-message" *ngIf="email.errors['required']">Email is required</div>
+          <div class="error-message" *ngIf="email.errors['email']">Email must be a valid email address</div>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" nzBlock type="submit">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  

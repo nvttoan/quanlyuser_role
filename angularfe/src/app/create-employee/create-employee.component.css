@@ -1,0 +1,25 @@
+.error-message {
+    color: red;
+  }
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  nz-form-item {
+    margin-bottom: 10px;
+  }
+  
+  nz-form-label {
+    width: 100px;
+    text-align: right;
+  }
+  
+  nz-form-control {
+    flex: 1;
+  }
+  
+  button {
+    margin-left: 10px;
+  }
+  

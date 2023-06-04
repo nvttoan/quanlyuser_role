@@ -1,0 +1,26 @@
+.col-md-6.offset-md-3 {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  nz-form-item {
+    margin-bottom: 10px;
+  }
+  
+  nz-form-label {
+    width: 120px;
+    text-align: left;
+  }
+  
+  nz-form-control {
+    flex: 1;
+  }
+  
+  button {
+    margin-left: 120px;
+  }
+  

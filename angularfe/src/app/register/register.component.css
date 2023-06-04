@@ -1,0 +1,62 @@
+.form-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-container {
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.invalid-feedback {
+  color: #f5222d;
+  font-size: 12px;
+}
+
+.alert {
+  margin-bottom: 15px;
+}
+
+.alert-warning {
+  color: #faad14;
+  background-color: #fffbe6;
+  border-color: #ffe58f;
+}
+
+.alert-success {
+  color: #52c41a;
+  background-color: #f6ffed;
+  border-color: #b7eb8f;
+}
+
+button[nz-button] {
+  width: 100%;
+}
+
+button[nz-button][nzType="primary"] {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+button[nz-button][nzType="primary"]:hover,
+button[nz-button][nzType="primary"]:focus {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
