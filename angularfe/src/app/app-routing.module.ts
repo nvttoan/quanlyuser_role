@@ -12,7 +12,6 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { UsertableComponent } from './usertable/usertable.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { MenutableComponent } from './menutable/menutable.component';
 
 
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
-  { path: 'usertable/create-user', component: CreateUserComponent },
   { path: 'menutable', component: MenutableComponent },
 
   { path: 'moderator', component: BoardModeratorComponent },

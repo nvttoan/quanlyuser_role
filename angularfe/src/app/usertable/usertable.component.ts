@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./usertable.component.css']
 })
 export class UsertableComponent implements OnInit {
-
+  isModalVisible = false;
+  userIdToDelete: number | undefined;
   users: User[] | undefined;
   constructor(private userService: UserService, private router:Router){
 
@@ -19,6 +20,27 @@ export class UsertableComponent implements OnInit {
       this.getUser();
       
   }
+  openModal(userId: number) {
+    this.isModalVisible = true;
+    this.userIdToDelete = userId;
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
+    this.userIdToDelete = undefined;
+  }
+  
+  deleteUserConfirmed() {
+    if (this.userIdToDelete) {
+      this.userService.deleteUser(this.userIdToDelete).subscribe(() => {
+        console.log("User deleted");
+        this.isModalVisible = false;
+        this.userIdToDelete = undefined;
+        this.getUser();
+      });
+    }
+  }
+  
   private getUser(){
     this.userService.getUserList().subscribe(data => {
       this.users = data;

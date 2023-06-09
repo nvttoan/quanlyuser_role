@@ -29,21 +29,34 @@ export class UpdateUserComponent implements OnInit {
       }),console.error();
   }
   myForm: FormGroup;
-  saveUser() {
-    console.log(this.myForm.value);
-    this.userService.createUser(this.user).subscribe(data => {
-      console.log(data);
-      this.goToUserList();
+ saveUser() {
+  this.user.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
 
-      
+  this.userService.updateUser(this.user.id, this.user).subscribe(
+    data => {
+      this.goToUserList();
     },
     error => {
       console.error(error);
-    });
-  }
+    }
+  );
+}
+
+selectedRoles: string[] = [];
+
   
   goToUserList(){
     this.router.navigate(['/usertable']);
   }
 
 }
+// this.user.roles = this.user.roles.filter(role => role.name !== null);
+
+//   this.userService.updateUser(this.user.id, this.user).subscribe(
+//     data => {
+//       this.goToUserList();
+//     },
+//     error => {
+//       console.error(error);
+//     }
+//   );

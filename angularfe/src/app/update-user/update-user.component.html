@@ -1,5 +1,5 @@
 <div class="col-md-6 offset-md-3">
-    <h1>Update Employee</h1>
+    <h1>Update User</h1>
     <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveUser()">
         <div nz-form-item>
             <nz-form-label [nzRequired]="true">username</nz-form-label>
@@ -22,14 +22,11 @@
         <div nz-form-item>
             <nz-form-label [nzRequired]="true">role</nz-form-label>
             <nz-form-control>
-                <nz-select
-                    nzMode="multiple"
-                    nzPlaceHolder="Select roles"
-                    [(ngModel)]="user.roles"
-                    name="roles"
-                >
+                <nz-select nzMode="multiple" nzPlaceHolder="Select roles" [(ngModel)]="selectedRoles" name="roles">
                     <nz-option *ngFor="let role of roleOptions" [nzLabel]="role.name" [nzValue]="role.name"></nz-option>
-            </nz-select>  
+                  </nz-select>
+                  
+                  
             </nz-form-control>
         </div>
         <div nz-form-item>
@@ -40,11 +37,4 @@
     </form>
 </div>
 
-<!-- <nz-select
-                    nzMode="multiple"
-                    nzPlaceHolder="Select roles"
-                    [(ngModel)]="user.roles"
-                    name="roles"
-                >
-                    <nz-option *ngFor="let role of roleOptions" [nzLabel]="role.name" [nzValue]="role.name"></nz-option>
-            </nz-select>   -->
+ 
