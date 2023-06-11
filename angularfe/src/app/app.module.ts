@@ -14,17 +14,17 @@ import {SharedModule } from './share-module'
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { LoginComponent } from './login/login.component';
 
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { CreateEmployeeComponent } from './create-employee/create-employee.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardUserComponent } from './board-user/board-user.component';
-import { UsertableComponent } from './usertable/usertable.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { CreateUserComponent } from './create-user/create-user.component';
-import { MenutableComponent } from './menutable/menutable.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateEmployeeComponent } from './pages/update-employee/update-employee.component';
+import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
+import { BoardModeratorComponent } from './pages/board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
+import { BoardUserComponent } from './pages/board-user/board-user.component';
+import { UsertableComponent } from './pages/usertable/usertable.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { MenutableComponent } from './pages/menutable/menutable.component';
 
 registerLocaleData(en);
 

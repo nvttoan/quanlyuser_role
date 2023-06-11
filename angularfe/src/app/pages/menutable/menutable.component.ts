@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu } from '../model/menu';
-import { MenuService } from '../_services/menu.service';
+import { Menu } from '../../model/menu';
+import { MenuService } from '../../services/menu.service';
 import { Router } from '@angular/router';
 
 @Component({

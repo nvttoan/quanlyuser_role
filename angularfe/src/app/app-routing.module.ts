@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { CreateEmployeeComponent } from './create-employee/create-employee.component';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { UsertableComponent } from './usertable/usertable.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { MenutableComponent } from './menutable/menutable.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { BoardUserComponent } from './pages/board-user/board-user.component';
+import { BoardModeratorComponent } from './pages/board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
+import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
+import { UpdateEmployeeComponent } from './pages/update-employee/update-employee.component';
+import { EmployeeDetailsComponent } from './pages/employee-details/employee-details.component';
+import { UsertableComponent } from './pages/usertable/usertable.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { MenutableComponent } from './pages/menutable/menutable.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  {path: 'home', loadChildren: ()=> import('./home/home.module').then(m => m.homeModule)},
+  {path: 'home', loadChildren: ()=> import('./pages/home/home.module').then(m => m.homeModule)},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

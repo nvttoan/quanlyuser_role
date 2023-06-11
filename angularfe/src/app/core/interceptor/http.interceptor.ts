@@ -3,9 +3,9 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { StorageService } from '../_services/storage.service';
-import { EventBusService } from '../_shared/event-bus.service';
-import { EventData } from '../_shared/event.class';
+import { StorageService } from '../../services/storage.service';
+import { EventBusService } from '../../_shared/event-bus.service';
+import { EventData } from '../../_shared/event.class';
 //gắn thêm thông tin với các request HTTP trước khi chúng được gửi đi và xử lý các response trả về từ server trước khi được truyền tới ứng dụng.
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {

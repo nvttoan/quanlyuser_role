@@ -14,7 +14,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HomeComponent } from './home.component';
-import { SharedModule } from '../share-module';
+import { SharedModule } from '../../share-module';
 
 
 registerLocaleData(en);
