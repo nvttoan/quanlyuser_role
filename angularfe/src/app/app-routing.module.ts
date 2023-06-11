@@ -17,7 +17,6 @@ import { MenutableComponent } from './pages/menutable/menutable.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   {path: 'home', loadChildren: ()=> import('./pages/home/home.module').then(m => m.homeModule)},
   { path: 'login', component: LoginComponent },
