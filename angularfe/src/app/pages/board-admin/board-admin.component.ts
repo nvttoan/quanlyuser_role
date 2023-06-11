@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Router } from '@angular/router';
-import { Employee } from '../../model/employee';
+import { Employee } from '../../model/employee.model';
 
 @Component({
   selector: 'app-board-admin',

@@ -1,4 +1,4 @@
-import { Employee } from '../model/employee';
+import { Employee } from '../model/employee.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
