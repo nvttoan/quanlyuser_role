@@ -1,6 +1,6 @@
 <div class="form-background">
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card-container">
       <img id="profile-img" src="https://p7.hiclipart.com/preview/980/886/491/computer-icons-icon-design-avatar-flat-face-icon.jpg" class="profile-img-card" />
       <form nz-form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
@@ -23,6 +23,7 @@
         <div class="form-group">
           <button nz-button nzType="primary" nzBlock>Login</button>
         </div>
+        <a routerLink="/register">register now!</a>
         <div class="form-group">
           <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
             Login failed: {{ errorMessage }}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../usertable/user.model';
+import { User } from '../user.model';
 import { Router } from '@angular/router';
-import { UserService } from '../usertable/user.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-create-user',

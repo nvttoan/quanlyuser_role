@@ -23,7 +23,7 @@ import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
 import { BoardUserComponent } from './pages/board-user/board-user.component';
 import { UsertableComponent } from './pages/usertable/usertable.component';
 import { UpdateUserComponent } from './pages/usertable/update-user/update-user.component';
-import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { CreateUserComponent } from './pages/usertable/create-user/create-user.component';
 import { MenutableComponent } from './pages/menutable/menutable.component';
 
 registerLocaleData(en);

@@ -1,6 +1,6 @@
 <div class="form-background">
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card-container">
       <img id="profile-img" src="https://p7.hiclipart.com/preview/980/886/491/computer-icons-icon-design-avatar-flat-face-icon.jpg" class="profile-img-card" />
       <form nz-form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
@@ -32,6 +32,7 @@
         <div class="form-group">
           <button nz-button nzType="primary" nzBlock>Sign Up</button>
         </div>
+        <a routerLink="/login">Login now!</a>
 
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
           Signup failed!<br />{{ errorMessage }}

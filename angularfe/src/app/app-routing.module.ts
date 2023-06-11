@@ -13,25 +13,26 @@ import { EmployeeDetailsComponent } from './pages/board-admin/employee-details/e
 import { UsertableComponent } from './pages/usertable/usertable.component';
 import { UpdateUserComponent } from './pages/usertable/update-user/update-user.component';
 import { MenutableComponent } from './pages/menutable/menutable.component';
-
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {path: 'home', loadChildren: ()=> import('./pages/home/home.module').then(m => m.homeModule)},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'menutable', component: MenutableComponent },
+  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'user', component: BoardUserComponent ,canActivate: [AuthGuard]},
+  { path: 'menutable', component: MenutableComponent,canActivate: [AuthGuard] },
 
-  { path: 'moderator', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  {path:'admin/create-employees', component: CreateEmployeeComponent},
-  {path: 'update-employee/:id', component: UpdateEmployeeComponent},
-  {path: 'employee-details/:id',component: EmployeeDetailsComponent},
-  {path: 'usertable', component: UsertableComponent},
-  {path: 'update-user/:id', component: UpdateUserComponent},
+  { path: 'moderator', component: BoardModeratorComponent,canActivate: [AuthGuard] },
+  { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard]},
+  {path:'admin/create-employees', component: CreateEmployeeComponent,canActivate: [AuthGuard]},
+  {path: 'update-employee/:id', component: UpdateEmployeeComponent,canActivate: [AuthGuard]},
+  {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
+  {path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
+  {path: 'update-user/:id', component: UpdateUserComponent,canActivate: [AuthGuard]},
+  { path: '**', redirectTo: 'login' }
 
 ];
 

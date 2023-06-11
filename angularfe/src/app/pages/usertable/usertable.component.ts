@@ -20,6 +20,7 @@ export class UsertableComponent implements OnInit {
       this.getUser();
       
   }
+  //modal
   openModal(userId: number) {
     this.isModalVisible = true;
     this.userIdToDelete = userId;

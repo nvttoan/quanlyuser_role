@@ -1,23 +1,8 @@
-/* .login-form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
 
-  .login-form-margin {
-    margin-bottom: 16px;
-  }
-
-  .login-form-forgot {
-    float: right;
-  }
-
-  .login-form-button {
-    width: 100%;
-  } */
   .form-background {
+    margin-top: 36px;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
   }
   
@@ -35,7 +20,11 @@
     border-radius: 50%;
     margin: 0 auto;
     margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
+  
   
   .form-group {
     margin-bottom: 15px;
