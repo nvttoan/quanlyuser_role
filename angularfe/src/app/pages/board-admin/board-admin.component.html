@@ -7,7 +7,9 @@
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Age</th>
           <th>Email Id</th>
+
           <th>Actions</th>
         </tr>
       </thead>
@@ -15,7 +17,10 @@
         <tr *ngFor="let employee of employees">
           <td>{{ employee.firstName }}</td>
           <td>{{ employee.lastName }}</td>
+          <td>{{ employee.age }}</td>
+
           <td>{{ employee.emailId }}</td>
+
           <td>
             <button nz-button nzType="primary" nzSize="small" (click)="updateEmployee(employee.id)">Update</button>
             <button nz-button nzType="danger" nzSize="small" (click)="deleteEmployee(employee.id)" nzStyle="margin-left: 10px">Delete</button>
@@ -24,4 +29,5 @@
         </tr>
       </tbody>
     </nz-table>
+    
   </ng-container>

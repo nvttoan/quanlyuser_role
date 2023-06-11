@@ -17,6 +17,8 @@ public class Employee {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "age")
+    private long age;
     @Column(name = "email_id")
     private String emailId;
 
@@ -28,6 +30,7 @@ public class Employee {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.emailId = emailId;
     }
 
@@ -85,6 +88,20 @@ public class Employee {
      */
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    /**
+     * @return long return the age
+     */
+    public long getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(long age) {
+        this.age = age;
     }
 
 }

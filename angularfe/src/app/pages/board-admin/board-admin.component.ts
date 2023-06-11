@@ -9,7 +9,9 @@ import { Employee } from '../../model/employee.model';
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
+  
   employees: Employee[] | undefined;
+  
   constructor(private employeeService: EmployeeService, private router:Router){
 
   }
@@ -35,21 +37,5 @@ export class BoardAdminComponent implements OnInit {
       this.getEmployees();
     })
   }
-//   currentPage = 1; // Trang hiện tại
-//   pageSize = 7;
-//   displayedEmployees: any[] = []; ;
-//   onPageChange(page: number) {
-//     this.currentPage = page;
-//     this.updateDisplayedEmployees();
-//   }
-//   updateDisplayedEmployees() {
-//     const startIndex = (this.currentPage - 1) * this.pageSize;
-//     const endIndex = startIndex + this.pageSize;
-//     this.displayedEmployees = this.employees.slice(startIndex, endIndex);
-//   }
-//   onPageSizeChange(pageSize: number) {
-//     this.pageSize = pageSize;
-//     this.currentPage = 1;
-//     this.updateDisplayedEmployees();
-//   }
+  
 }

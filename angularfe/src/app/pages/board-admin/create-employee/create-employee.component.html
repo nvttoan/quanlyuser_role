@@ -43,6 +43,27 @@
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'age'">Age</nz-form-label>
+      <nz-form-control [nzErrorTip]="age.errors && f.submitted">
+        <input
+          nz-input
+          id="age"
+          [(ngModel)]="employee.age"
+          name="age"
+          type="text"
+          required
+          #age="ngModel"
+          [(ngModel)]="form.age"
+          pattern="[0-9]+"
+          [ngClass]="{ 'is-invalid': f.submitted && age.errors }"
+        />
+        <nz-form-explain *ngIf="age.errors && f.submitted">
+          <div  class="error-message" *ngIf="age.errors['required']">Age is required</div>
+          <div  class="error-message" *ngIf="age.errors['pattern']">Age must contain only number</div>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
   
     <nz-form-item>
       <nz-form-label [nzFor]="'email'">Email Id</nz-form-label>
