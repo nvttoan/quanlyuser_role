@@ -16,13 +16,13 @@ import { LoginComponent } from './login/login.component';
 
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { UpdateEmployeeComponent } from './pages/update-employee/update-employee.component';
-import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
+import { UpdateEmployeeComponent } from './pages/board-admin/update-employee/update-employee.component';
+import { CreateEmployeeComponent } from './pages/board-admin/create-employee/create-employee.component';
 import { BoardModeratorComponent } from './pages/board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
 import { BoardUserComponent } from './pages/board-user/board-user.component';
 import { UsertableComponent } from './pages/usertable/usertable.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { UpdateUserComponent } from './pages/usertable/update-user/update-user.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { MenutableComponent } from './pages/menutable/menutable.component';
 
