@@ -6,8 +6,11 @@
       <thead>
         <tr>
           <th>namemenu</th>
+          <th>code</th>
           <th>url</th>
           <th>urlparent</th>
+          <th>description</th>
+
           <th>roles</th>
           <th>Actions</th>
 
@@ -16,8 +19,12 @@
       <tbody>
         <tr *ngFor="let menu of menus">
           <td>{{ menu.nameMenu }}</td>
+          <td>{{ menu.code }}</td>
+
           <td>{{ menu.url }}</td>
           <td>{{ menu.urlParent }}</td>
+          <td>{{ menu.description }}</td>
+
           <td>
             <ng-container *ngFor="let role of menu.roles; let last = last">
               {{ role.name }}{{ !last ? ', ' : '' }}

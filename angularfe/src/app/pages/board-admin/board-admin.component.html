@@ -2,7 +2,7 @@
     
     <button nz-button nzType="primary" nzSize="large" routerLink="create-employees" routerLinkActive="active">Add Employee</button>
     <h2 class="text-center" style="margin-top: 48px;">Employee List</h2>
-    <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees"   >
+    <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzShowPagination]="true" [nzPageSize]="10" [nzTotal]="totalItems"  >
       <thead>
         <tr>
           <th>First Name</th>

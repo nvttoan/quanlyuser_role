@@ -23,10 +23,16 @@ public class UserService {
     private RoleRepository roleRepository;
 
     @Autowired
-    public  UserService(UserRepository userRepository) {this.userRepository = userRepository;}
-    public List<User> getAllUser() {return  userRepository.findAll();}
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<User> getAllUser() {
+        return userRepository.findAll();
+    }
+
     public User createUser(User user) {
-        // Check if the username or email already exists
+        // kiểm tra xem tên người dùng hoặc email đã tồn tại trong repository
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new ResourceNotFoundException("Username already exists: " + user.getUsername());
         }
@@ -35,7 +41,7 @@ public class UserService {
             throw new ResourceNotFoundException("Email already exists: " + user.getEmail());
         }
 
-        // Hash the password using BCryptPasswordEncoder
+        // mã hóa password BCryptPasswordEncoder
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -53,45 +59,41 @@ public class UserService {
             throw new IllegalArgumentException("User must have at least one role.");
         }
 
+        return userRepository.save(user);
+    }
+
+    public User getUserById(long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("user not exit with id:" + id));
+    }
+
+    public User updateUser(long id, User userDetails) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+
+        user.setUsername(userDetails.getUsername());
+        user.setEmail(userDetails.getEmail());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(userDetails.getPassword());
+        user.setPassword(encodedPassword);
+
+        Set<Role> roles = userDetails.getRoles();
+        if (roles != null) {
+            // Lấy danh sách vai trò từ cơ sở dữ liệu dựa trên tên vai trò
+            Set<Role> updatedRoles = new HashSet<>();
+            for (Role role : roles) {
+                Role existingRole = roleRepository.findByName(role.getName())
+                        .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + role.getName()));
+                updatedRoles.add(existingRole);
+            }
+
+            user.setRoles(updatedRoles);
+        }
 
         return userRepository.save(user);
     }
 
-    public User getUserById(long id){
-        return userRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("user not exit with id:" + id));
-    }
-
-public User updateUser(long id, User userDetails) {
-    User user = userRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-
-    user.setUsername(userDetails.getUsername());
-    user.setEmail(userDetails.getEmail());
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    String encodedPassword = passwordEncoder.encode(userDetails.getPassword());
-    user.setPassword(encodedPassword);
-
-    Set<Role> roles = userDetails.getRoles();
-    if (roles != null) {
-        // Lấy danh sách vai trò từ cơ sở dữ liệu dựa trên tên vai trò
-        Set<Role> updatedRoles = new HashSet<>();
-        for (Role role : roles) {
-            Role existingRole = roleRepository.findByName(role.getName())
-                    .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + role.getName()));
-            updatedRoles.add(existingRole);
-        }
-
-        user.setRoles(updatedRoles);
-    }
-
-    return userRepository.save(user);
-}
-
-
-
-
-    public void deleteUser(long id){
+    public void deleteUser(long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("user not delete with id:" + id));
         userRepository.delete(user);

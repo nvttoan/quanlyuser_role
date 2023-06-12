@@ -49,7 +49,7 @@ export class BoardAdminComponent implements OnInit {
     this.isModalVisible = false;
     this.employeeIdToDelete = undefined;
   }
-  
+  totalItems = 5;
   deleteEmployeeConfirmed() {
     if (this.employeeIdToDelete) {
       this.employeeService.deleteEmployee(this.employeeIdToDelete).subscribe(() => {
