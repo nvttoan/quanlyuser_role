@@ -27,8 +27,6 @@ export class UsertableComponent implements OnInit {
       this.getUser();
       
   }
-  
-  
   private getUser() {
     this.userService.getUserList().subscribe(data => {
       this.users = data;

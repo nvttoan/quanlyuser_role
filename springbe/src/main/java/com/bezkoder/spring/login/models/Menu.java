@@ -9,7 +9,7 @@ import java.util.Set;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     @Column(name = "namemenu")
     private String nameMenu;
@@ -28,7 +28,7 @@ public class Menu {
 
     // Constructors, getters, setters
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
