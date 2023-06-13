@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 export class MenutableComponent implements OnInit {
   id!: number;
   menus: Menu[] | undefined;
+  menuIdToDelete: number | undefined;
+  visible = false;
+  isModalVisible = false;
+
   constructor(private menuService: MenuService, private router:Router) { }
 
   ngOnInit(): void {
@@ -34,4 +38,26 @@ export class MenutableComponent implements OnInit {
       this.getMenu();
     })
   }
+  //modal
+  openModal(userId: number) {
+    this.isModalVisible = true;
+    this.menuIdToDelete = userId;
+  }
+  
+  closeModal() {
+    this.isModalVisible = false;
+    this.menuIdToDelete = undefined;
+  }
+  
+  deleteUserConfirmed() {
+    if (this.menuIdToDelete) {
+      this.menuService.deleteMenu(this.menuIdToDelete).subscribe(() => {
+        console.log("User deleted");
+        this.isModalVisible = false;
+        this.menuIdToDelete = undefined;
+        this.getMenu();
+      });
+    }
+  }
+  
 }
