@@ -13,15 +13,8 @@ export class UserService {
   getUserList(): Observable<User[]>{
     return this.httpClient.get<User[]>(`${this.baseURL}`);
   }
-  createUser(user: User): Observable<Object> {
-    const rolesArray = user.roles.map(roles => roles.name);
-
-    const requestBody = {
-      ...user,
-      'roles[]': rolesArray
-    };
-
-    return this.httpClient.post(this.baseURL, requestBody);
+  CreateUser(user: User):Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`,user);
   }
   getUserById(id: number):Observable<User>{
     return this.httpClient.get<User>(`${this.baseURL}/${id}`);

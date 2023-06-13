@@ -14,16 +14,22 @@ import { UsertableComponent } from './pages/usertable/usertable.component';
 import { UpdateUserComponent } from './pages/usertable/update-user/update-user.component';
 import { MenutableComponent } from './pages/menutable/menutable.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { CreateUserComponent } from './pages/usertable/create-user/create-user.component';
+import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.component';
+import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
   {path: 'home', loadChildren: ()=> import('./pages/home/home.module').then(m => m.homeModule)},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
   { path: 'user', component: BoardUserComponent ,canActivate: [AuthGuard]},
   { path: 'menutable', component: MenutableComponent,canActivate: [AuthGuard] },
+  { path: 'menutable/create-menu', component: CreateMenuComponent,canActivate: [AuthGuard] },
+  { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
+
 
   { path: 'moderator', component: BoardModeratorComponent,canActivate: [AuthGuard] },
   { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard]},
@@ -31,6 +37,7 @@ const routes: Routes = [
   {path: 'update-employee/:id', component: UpdateEmployeeComponent,canActivate: [AuthGuard]},
   {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
   {path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
+  { path: 'usertable/create-user', component: CreateUserComponent,canActivate: [AuthGuard] },
   {path: 'update-user/:id', component: UpdateUserComponent,canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'login' }
 

@@ -11,35 +11,41 @@ import { UserService } from '../user.service';
 export class CreateUserComponent implements OnInit {
 
   user: User = new User();
-  constructor(private userService: UserService,
-    private router: Router){
-    
-  }
-  form: any = {
-    username: null,
-    password: null
-  };
-  isLoggedIn = false;
-  ngOnInit(): void{
-  }
+  selectedRoles: string[] = [];
+
+  constructor(private userService: UserService, private router: Router) { }
+
   roleOptions: { name: string }[] = [
     { name: 'ROLE_USER' },
     { name: 'ROLE_MODERATOR' },
     { name: 'ROLE_ADMIN' }
   ];
-  saveUser(){
-    this.userService.createUser(this.user).subscribe(data =>{
-      console.log(data);
-      this.gotoEmployeeList();
-    }),
-    console.error();
-    
+
+  ngOnInit(): void {
+    this.user.roles = [];
   }
-  gotoEmployeeList(){
-    this.router.navigate(['/admin']);
+  
+
+  saveUser() {
+    this.user.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
+
+    this.userService.CreateUser(this.user).subscribe(
+      data => {
+        console.log(data);
+        this.gotoUserList();
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
-  onSubmit(){
+
+  gotoUserList() {
+    this.router.navigate(['/usertable']);
+  }
+
+  onSubmit() {
     console.log(this.user);
-    this.saveUser()
+    this.saveUser();
   }
 }

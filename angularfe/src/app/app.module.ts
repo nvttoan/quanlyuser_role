@@ -25,6 +25,8 @@ import { UsertableComponent } from './pages/usertable/usertable.component';
 import { UpdateUserComponent } from './pages/usertable/update-user/update-user.component';
 import { CreateUserComponent } from './pages/usertable/create-user/create-user.component';
 import { MenutableComponent } from './pages/menutable/menutable.component';
+import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.component';
+import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
 
 registerLocaleData(en);
 
@@ -42,7 +44,9 @@ registerLocaleData(en);
     UsertableComponent,
     UpdateUserComponent,
     CreateUserComponent,
-    MenutableComponent
+    MenutableComponent,
+    CreateMenuComponent,
+    UpdateMenuComponent
   ],
   imports: [
     BrowserModule,

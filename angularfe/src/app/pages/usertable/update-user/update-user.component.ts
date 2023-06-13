@@ -50,13 +50,3 @@ selectedRoles: string[] = [];
   }
 
 }
-// this.user.roles = this.user.roles.filter(role => role.name !== null);
-
-//   this.userService.updateUser(this.user.id, this.user).subscribe(
-//     data => {
-//       this.goToUserList();
-//     },
-//     error => {
-//       console.error(error);
-//     }
-//   );

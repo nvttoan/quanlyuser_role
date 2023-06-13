@@ -32,5 +32,16 @@ nz-carousel .slick-slide img {
   object-fit: cover;
   display: block;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Điều chỉnh chiều cao tùy ý */
+}
 
-
+.carousel-wrapper {
+  max-width: 1024px; /* Điều chỉnh chiều rộng tùy ý */
+}
+h1 {
+  text-align: center;
+}
