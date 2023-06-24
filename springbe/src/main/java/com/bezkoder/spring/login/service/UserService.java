@@ -2,8 +2,10 @@ package com.bezkoder.spring.login.service;
 
 import com.bezkoder.spring.login.exception.ResourceNotFoundException;
 import com.bezkoder.spring.login.models.ERole;
+import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
 import com.bezkoder.spring.login.models.User;
+import com.bezkoder.spring.login.repository.MenuRepository;
 import com.bezkoder.spring.login.repository.RoleRepository;
 import com.bezkoder.spring.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +99,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("user not delete with id:" + id));
         userRepository.delete(user);
+
     }
+
 }

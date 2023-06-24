@@ -1,5 +1,7 @@
 package com.bezkoder.spring.login.models;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -36,4 +38,5 @@ public class Role {
   public void setName(ERole name) {
     this.name = name;
   }
+
 }

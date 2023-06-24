@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Router } from '@angular/router';
 import { Employee } from '../../model/employee.model';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 
 @Component({
   selector: 'app-board-admin',
@@ -11,11 +13,10 @@ import { Employee } from '../../model/employee.model';
 export class BoardAdminComponent implements OnInit {
   isModalVisible = false;
   employeeIdToDelete: number | undefined;
+  employee: Employee = new Employee();
   employees: Employee[] | undefined;
-  totalItems: number = 0;
-  currentPageIndex: number = 1;
-  
-  constructor(private employeeService: EmployeeService, private router: Router) {}
+  modalRef: NzModalRef | undefined;
+  constructor(private employeeService: EmployeeService, private router: Router,private modalService: NzModalService,) {}
 
   ngOnInit(): void {
     this.getEmployees();
@@ -24,7 +25,6 @@ export class BoardAdminComponent implements OnInit {
   private getEmployees(): void {
     this.employeeService.getEmployeesList().subscribe(data => {
       this.employees = data;
-      this.totalItems = this.employees.length;
     });
   }
 
@@ -43,7 +43,7 @@ export class BoardAdminComponent implements OnInit {
     });
   }
   
-  // Modal
+  //Modal
   openModal(employeeId: number): void {
     this.isModalVisible = true;
     this.employeeIdToDelete = employeeId;
@@ -64,8 +64,23 @@ export class BoardAdminComponent implements OnInit {
       });
     }
   }
-
-  pageIndexChanged(index: number): void {
-    this.currentPageIndex = index;
+  
+  openAddModal(): void {
+    this.router.navigate(['/admin/create-employees']);
   }
+  
+  closeAddModal(): void {
+    this.isModalVisible = false;
+  }
+  saveEmployee(): void {
+    this.employeeService.CreateEmployee(this.employee).subscribe(data => {
+      console.log(data);
+      this.getEmployees();
+      this.closeAddModal();
+    }, error => {
+      console.error(error);
+    });
+  }
+  
+  
 }

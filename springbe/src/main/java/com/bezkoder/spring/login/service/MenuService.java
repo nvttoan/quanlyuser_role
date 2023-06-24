@@ -1,6 +1,7 @@
 package com.bezkoder.spring.login.service;
 
 import com.bezkoder.spring.login.exception.ResourceNotFoundException;
+import com.bezkoder.spring.login.models.ERole;
 import com.bezkoder.spring.login.models.Employee;
 import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
@@ -22,8 +23,9 @@ public class MenuService {
     private RoleRepository roleRepository;
 
     @Autowired
-    public MenuService(MenuRepository menuRepository) {
+    public MenuService(MenuRepository menuRepository, RoleRepository roleRepository) {
         this.menuRepository = menuRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<Menu> getAllMenu() {
@@ -65,4 +67,25 @@ public class MenuService {
                 .orElseThrow(() -> new ResourceNotFoundException("menu not delete with id:" + id));
         menuRepository.delete(menu);
     }
+
+    public List<Menu> getMenuByRole(String roleName) {
+        Role role = roleRepository.findByName(ERole.valueOf(roleName))
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + roleName));
+
+        return menuRepository.findByRole(role);
+    }
+
+    public List<Menu> updateMenuByRole(String roleName, List<Long> menuIds) {
+        Role role = roleRepository.findByName(ERole.valueOf(roleName))
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + roleName));
+
+        List<Menu> menus = menuRepository.findAllById(menuIds);
+
+        for (Menu menu : menus) {
+            menu.getRoles().add(role);
+        }
+
+        return menuRepository.saveAll(menus);
+    }
+
 }

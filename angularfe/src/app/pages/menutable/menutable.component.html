@@ -1,10 +1,16 @@
 <ng-container>
     <button nz-button nzType="primary" nzSize="large" routerLink="create-menu" routerLinkActive="active">Add Menu</button>
+    <button nz-button nzType="primary" nzSize="large" routerLink="create-menu" routerLinkActive="active">Edit Admin Menu</button>
+    <button nz-button nzType="primary" nzSize="large" routerLink="create-menu" routerLinkActive="active">Edit User Menu</button>
+
+
     
     <h2 class="text-center" style="margin-top: 48px;">Menu List</h2>
     <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="menus">
       <thead>
         <tr>
+          <th>menu_id</th>
+
           <th>menu</th>
           <th>code</th>
           <th>url</th>
@@ -17,6 +23,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let menu of menus">
+          <td>{{ menu.id }}</td>
+
           <td>{{ menu.nameMenu }}</td>
           <td>{{ menu.code }}</td>
 

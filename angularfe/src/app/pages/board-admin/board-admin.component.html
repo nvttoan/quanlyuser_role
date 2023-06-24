@@ -1,7 +1,8 @@
 <ng-container>
-  <button nz-button nzType="primary" nzSize="large" routerLink="create-employees" routerLinkActive="active">Add Employee</button>
+  <button nz-button nzType="primary" nzSize="large" (click)="openAddModal()" routerLinkActive="active">Add Employee</button>
+
   <h2 class="text-center" style="margin-top: 48px;">Employee List</h2>
-  <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzShowPagination]="true" [nzPageSize]="10" [nzTotal]="totalItems">
+  <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzShowPagination]="true" [nzPageSize]="10" >
     <thead>
       <tr>
         <th>First Name</th>
@@ -25,7 +26,6 @@
       </tr>
     </tbody>
   </nz-table>
-  <nz-pagination [nzPageIndex]="currentPageIndex" [nzTotal]="totalItems" [nzPageSize]="5" (nzPageIndexChange)="pageIndexChanged($event)"></nz-pagination>
 </ng-container>
 
 <nz-modal [(nzVisible)]="isModalVisible" nzTitle="Confirm Delete" (nzOnCancel)="closeModal()" (nzOnOk)="deleteEmployeeConfirmed()">
