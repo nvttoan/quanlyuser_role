@@ -26,4 +26,12 @@ export class MenuService {
   deleteMenu(id: number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+  getMenuByRole(role: string): Observable<Menu[]> {
+    return this.httpClient.get<Menu[]>(`${this.baseURL}/${role}`);
+  }
+
+  updateMenuByRole(role: string, menuIds: number[]): Observable<Menu[]> {
+    return this.httpClient.put<Menu[]>(`${this.baseURL}/${role}`, menuIds);
+  }
+  
 }

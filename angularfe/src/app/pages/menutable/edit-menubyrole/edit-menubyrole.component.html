@@ -1,0 +1,35 @@
+<div *ngFor="let role of roles">
+    <h2>{{role}}</h2>
+    <ul *ngIf="menuByRole[role] && menuByRole[role].length > 0">
+      <button nz-button nzType="primary" (click)="toggleTable(role)">Detail</button>
+      <span class="button-spacing"></span>
+      <button nz-button nzType="primary" (click)="toggleTable(role)">Edit</button>
+
+      <li *ngFor="let menu of menuByRole[role]">
+        <nz-table nzTableLayout="fixed" nzSize="middle" class="custom-table" [nzData]="['']"
+          [nzShowPagination]="false" [hidden]="!showTables[role]">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>menu</th>
+              <th>code</th>
+              <th>url</th>
+              <th>urlparent</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ menu.id }}</td>
+              <td>{{ menu.nameMenu }}</td>
+              <td>{{ menu.code }}</td>
+              <td>{{ menu.url }}</td>
+              <td>{{ menu.urlParent }}</td>
+              <td>{{ menu.description }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </li>
+    </ul>
+  </div>
+  

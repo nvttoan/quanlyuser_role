@@ -63,11 +63,18 @@ public class MenuController {
         return ResponseEntity.ok(response);
     }
 
+    // @GetMapping("/menu/{role}")
+    // public ResponseEntity<List<Long>> getMenuIdsByRole(@PathVariable("role")
+    // String roleName) {
+    // List<Menu> menus = menuService.getMenuByRole(roleName);
+    // List<Long> menuIds =
+    // menus.stream().map(Menu::getId).collect(Collectors.toList());
+    // return ResponseEntity.ok().body(menuIds);
+    // }
     @GetMapping("/menu/{role}")
-    public ResponseEntity<List<Long>> getMenuIdsByRole(@PathVariable("role") String roleName) {
+    public ResponseEntity<List<Menu>> getMenuListByRole(@PathVariable("role") String roleName) {
         List<Menu> menus = menuService.getMenuByRole(roleName);
-        List<Long> menuIds = menus.stream().map(Menu::getId).collect(Collectors.toList());
-        return ResponseEntity.ok().body(menuIds);
+        return ResponseEntity.ok().body(menus);
     }
 
     @PutMapping("/menu/{role}")

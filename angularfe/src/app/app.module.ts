@@ -27,6 +27,7 @@ import { CreateUserComponent } from './pages/usertable/create-user/create-user.c
 import { MenutableComponent } from './pages/menutable/menutable.component';
 import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.component';
 import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
+import { EditMenubyroleComponent } from './pages/menutable/edit-menubyrole/edit-menubyrole.component';
 
 registerLocaleData(en);
 
@@ -46,7 +47,8 @@ registerLocaleData(en);
     CreateUserComponent,
     MenutableComponent,
     CreateMenuComponent,
-    UpdateMenuComponent
+    UpdateMenuComponent,
+    EditMenubyroleComponent,
   ],
   imports: [
     BrowserModule,
