@@ -77,7 +77,8 @@ public class MenuService {
     // }
     public List<Menu> getMenuByRole(String roleName) {
         Role role = roleRepository.findByName(ERole.valueOf(roleName))
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + roleName));
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found: " +
+                        roleName));
 
         return menuRepository.findByRole(role);
     }
@@ -92,7 +93,14 @@ public class MenuService {
             menu.getRoles().add(role);
         }
 
-        return menuRepository.saveAll(menus);
+        List<Menu> existingMenus = menuRepository.findAll();
+        for (Menu existingMenu : existingMenus) {
+            if (!menus.contains(existingMenu)) {
+                existingMenu.getRoles().remove(role);
+            }
+        }
+
+        return menuRepository.saveAll(existingMenus);
     }
 
 }

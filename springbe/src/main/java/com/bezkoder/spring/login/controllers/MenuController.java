@@ -83,5 +83,4 @@ public class MenuController {
         List<Menu> updatedMenus = menuService.updateMenuByRole(roleName, menuIds);
         return ResponseEntity.ok(updatedMenus);
     }
-
 }

@@ -4,18 +4,29 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { Menu } from 'src/app/pages/menutable/menu.model';
 
 @Component({
-  selector: 'app-edit-menubyrole',
-  templateUrl: './edit-menubyrole.component.html',
-  styleUrls: ['./edit-menubyrole.component.css']
+  selector: 'app-menubyrole',
+  templateUrl: './menubyrole.component.html',
+  styleUrls: ['./menubyrole.component.css']
 }) 
 export class EditMenubyroleComponent implements OnInit {
   roles: string[] = ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'];
   menuByRole: { [key: string]: Menu[] } = {};
   showTables: { [key: string]: boolean } = {};
+  isVisible = false;
+  currentRole: string;
+  listOfOption: string[] = [];
+  listOfSelectedValue = [];
+  selectedMenuIds: number[] = [];
   constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
+    const children: string[] = [];
+    for (let i = 1; i < 36; i++) {
+      children.push(`${i}`);
+    }
+    this.listOfOption = children;
     this.fetchMenuByRole();
+    
   }
 
   fetchMenuByRole(): void {
@@ -36,28 +47,27 @@ export class EditMenubyroleComponent implements OnInit {
     this.showTables[role] = !this.showTables[role];
   }
 
-  // openEditMenuModal(role: string): void {
-  //   this.selectedRole = role;
-  //   this.menuService.getMenuList().subscribe(
-  //     (menus: Menu[]) => {
-  //       this.allMenus = menus;
-  //       this.showEditMenuModal();
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
+  showModal(role: string) {
+    this.currentRole = role;
+    this.isVisible = true;
+  }
 
-  // showEditMenuModal(): void {
-  //   this.modalService.create({
-  //     nzTitle: 'Edit Menu',
-      
-  //   }
-  //   );
-  // }
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+    this.menuService.updateMenuByRole(this.currentRole, this.selectedMenuIds).subscribe(
+      (menus: Menu[]) => {
+        this.menuByRole[this.currentRole] = menus;
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
-  // updateMenuByRole(): void {
-   
-  // }
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
 }

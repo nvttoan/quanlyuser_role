@@ -17,7 +17,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { CreateUserComponent } from './pages/usertable/create-user/create-user.component';
 import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.component';
 import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
-import { EditMenubyroleComponent } from './pages/menutable/edit-menubyrole/edit-menubyrole.component';
+import { EditMenubyroleComponent } from './pages/menutable/menubyrole/menubyrole.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +29,8 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent ,canActivate: [AuthGuard]},
   { path: 'menutable', component: MenutableComponent,canActivate: [AuthGuard] },
   { path: 'menutable/create-menu', component: CreateMenuComponent,canActivate: [AuthGuard] },
-  { path: 'menutable/edit-menubyrole', component: EditMenubyroleComponent,canActivate: [AuthGuard] },
+  { path: 'menutable/menubyrole', component: EditMenubyroleComponent,canActivate: [AuthGuard] },
+
 
   { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
 
