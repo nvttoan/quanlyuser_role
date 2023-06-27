@@ -31,7 +31,7 @@
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard" *ngIf="isLoggedIn">
         
         <ul>
-          <li nz-menu-item nzMatchRouter *ngIf="showAdminBoard">
+          <li nz-menu-item nzMatchRouter *ngIf="isLoggedIn">
             <a routerLink="/admin">Admin board</a>
           </li>
           <li nz-menu-item nzMatchRouter *ngIf="showModeratorBoard">
@@ -43,7 +43,7 @@
           
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Edit for admin" nzIcon="form" *ngIf="showAdminBoard">
+      <li nz-submenu nzOpen nzTitle="Edit for admin" nzIcon="form" *ngIf="isLoggedIn">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/usertable">Quản lý user, role</a>
