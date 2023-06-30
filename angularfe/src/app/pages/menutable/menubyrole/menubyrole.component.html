@@ -1,19 +1,5 @@
 <div *ngFor="let role of roles">
-  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Edit menu by ' + currentRole" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-    <ng-container *nzModalContent>
-       <nz-select
-      [nzMaxTagCount]="7"
-      [nzMaxTagPlaceholder]="tagPlaceHolder"
-      nzMode="multiple"
-      nzPlaceHolder="Please select"
-      [(ngModel)]="listOfSelectedValue"
-      (ngModelChange)="selectedMenuIds = $event" 
-    >
-      <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
-    </nz-select>
-    <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
-    </ng-container>
-  </nz-modal>
+  
   <h2>{{role}}</h2>
   <button nz-button nzType="primary" (click)="toggleTable(role)">Detail</button>
   <span class="button-spacing"></span>
@@ -45,3 +31,22 @@
     </nz-table>
   </li>
 </div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Edit menu by ' + currentRole" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+     <<nz-select
+     [nzMaxTagCount]="7"
+     [nzMaxTagPlaceholder]="tagPlaceHolder"
+     nzMode="multiple"
+     nzPlaceHolder="Please select"
+     [(ngModel)]="listOfSelectedValue"
+     (ngModelChange)="selectedMenuIds = $event" 
+     [nzData]="menus"
+   >
+     <nz-option *ngFor="let item of menus" [nzLabel]="item.nameMenu" [nzValue]="item.id">
+         
+     </nz-option>
+   </nz-select>
+   
+  <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+  </ng-container>
+</nz-modal>

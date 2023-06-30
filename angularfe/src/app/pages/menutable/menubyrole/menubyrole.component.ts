@@ -17,18 +17,19 @@ export class EditMenubyroleComponent implements OnInit {
   listOfOption: string[] = [];
   listOfSelectedValue = [];
   selectedMenuIds: number[] = [];
+  menus: Menu[] | undefined;
   constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
-    const children: string[] = [];
-    for (let i = 1; i < 36; i++) {
-      children.push(`${i}`);
-    }
-    this.listOfOption = children;
+  
     this.fetchMenuByRole();
-    
+    this.getMenu();
   }
-
+  private getMenu(){
+    this.menuService.getMenuList().subscribe(data => {
+      this.menus = data;
+    })
+  }
   fetchMenuByRole(): void {
     for (const role of this.roles) {
       this.menuService.getMenuByRole(role).subscribe(
@@ -71,3 +72,8 @@ export class EditMenubyroleComponent implements OnInit {
     this.isVisible = false;
   }
 }
+// const children: string[] = [];
+    // for (let i = 1; i < 36; i++) {
+    //   children.push(`${i}`);
+    // }
+    // this.listOfOption = children;
