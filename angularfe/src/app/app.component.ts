@@ -4,6 +4,8 @@ import { AuthService } from './services/auth.service';
 import { EventBusService } from './_shared/event-bus.service';
 import { StorageService } from './services/storage.service';
 import { Router } from '@angular/router';
+import { Menu } from './pages/menutable/menu.model';
+import { MenuService } from 'src/app/pages/menutable/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +22,18 @@ export class AppComponent {
   username?: string;
 
   eventBusSub?: Subscription;
+  menus: Menu[] = [];
 
   constructor(
     private router: Router,
     private storageService: StorageService,
     private authService: AuthService,
-    private eventBusService: EventBusService
+    private eventBusService: EventBusService,
+    private menuService: MenuService
   ) {}
 
   ngOnInit(): void {
+    
     this.isLoggedIn = this.storageService.isLoggedIn();
 
     if (this.isLoggedIn) {
@@ -44,8 +49,17 @@ export class AppComponent {
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
+    this.getMenu();
   }
-
+  private getMenu() {
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.menuService.getMenuByRole(user.roles).subscribe(data => {
+        this.menus = data;
+      });
+    }
+  }
+  
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {

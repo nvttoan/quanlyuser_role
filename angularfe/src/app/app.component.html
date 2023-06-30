@@ -17,42 +17,11 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" >
       <ul *ngIf="isLoggedIn">
-      <li nz-menu-item>
-        <span nz-icon nzType="home" routerLink="/home"></span>
-        <span  class="nav-link" routerLink="/home">Home</span>
-      </li>
-      <li nz-submenu [nzTitle]="username" nzIcon="user" >
-        <ul>
-          <li nz-menu-item class="nav-link" routerLink="/profile">Trang cá nhân</li>
-          <li nz-menu-item class="nav-link" routerLink="/changepass">Đổi mật khẩu</li>
-        </ul>
-      </li>
-      
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard" >
-        
-        <ul>
-          <li nz-menu-item nzMatchRouter >
-            <a routerLink="/admin">Admin board</a>
+        <ng-container *ngIf="isLoggedIn">
+          <li nz-menu-item *ngFor="let menu of menus" [routerLink]="menu.url" routerLinkActive="ant-menu-item-selected">
+            {{ menu.nameMenu }}
           </li>
-          <li nz-menu-item nzMatchRouter >
-            <a routerLink="/moderator">Moderatorboard</a>
-          </li>
-          <li nz-menu-item nzMatchRouter >
-            <a routerLink="/user">Userboard</a>
-          </li>
-          
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Edit for admin" nzIcon="form" >
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/usertable">Quản lý user, role</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/menutable">Quản lý Menu</a>
-          </li>
-        </ul>
-      </li>
+        </ng-container>
       </ul>
       <ul>
       <li nz-menu-item *ngIf="!isLoggedIn">
