@@ -29,6 +29,7 @@ import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.c
 import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
 import { EditMenubyroleComponent } from './pages/menutable/menubyrole/menubyrole.component';
 import { UpdateMenubyroleComponent } from './update-menubyrole/update-menubyrole.component';
+import { ChangepassComponent } from './pages/changepass/changepass.component';
 
 registerLocaleData(en);
 
@@ -51,6 +52,7 @@ registerLocaleData(en);
     UpdateMenuComponent,
     EditMenubyroleComponent,
     UpdateMenubyroleComponent,
+    ChangepassComponent,
   ],
   imports: [
     BrowserModule,
