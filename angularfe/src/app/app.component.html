@@ -18,7 +18,8 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" >
       <ul *ngIf="isLoggedIn">
         <ng-container *ngIf="isLoggedIn">
-          <li nz-menu-item *ngFor="let menu of menus" [routerLink]="menu.url" routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item *ngFor="let menu of menus" [routerLink]="menu.url" routerLinkActive="ant-menu-item-selected" >
+            <i nz-icon [nzType]="menu.icon" nzTheme="outline"></i>
             {{ menu.nameMenu }}
           </li>
         </ng-container>

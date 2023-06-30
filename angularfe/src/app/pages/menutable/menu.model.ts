@@ -5,7 +5,7 @@ export class Menu {
     url: string = '';
     urlParent: string = '';
     description: string = '';
-
+    icon: string = '';
     roles!: { name: string }[];
 
 }

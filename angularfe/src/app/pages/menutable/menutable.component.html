@@ -16,6 +16,8 @@
           <th>url</th>
           <th>urlparent</th>
           <th>description</th>
+          <th>icon</th>
+
           <th>roles</th>
           <th>Actions</th>
 
@@ -31,6 +33,8 @@
           <td>{{ menu.url }}</td>
           <td>{{ menu.urlParent }}</td>
           <td>{{ menu.description }}</td>
+          <td>{{ menu.icon }}</td>
+
 
           <td>
             <ng-container *ngFor="let role of menu.roles; let last = last">

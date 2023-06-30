@@ -46,6 +46,8 @@ public class MenuService {
         menu.setUrl(menuDetails.getUrl());
         menu.setUrlParent(menuDetails.getUrlParent());
         menu.setDescription(menuDetails.getDescription());
+        menu.setIcon(menuDetails.getIcon());
+
         Set<Role> roles = menuDetails.getRoles();
         if (roles != null) {
             // Lấy danh sách vai trò từ cơ sở dữ liệu dựa trên tên vai trò

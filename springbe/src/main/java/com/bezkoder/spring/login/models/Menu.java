@@ -21,6 +21,8 @@ public class Menu {
     private String urlparent;
     @Column(name = "description")
     private String description;
+    @Column(name = "icon")
+    private String icon;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "menu_roles", joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -108,6 +110,20 @@ public class Menu {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return String return the icon
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * @param icon the icon to set
+     */
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
 }
