@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Employee } from '../../model/employee.model';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @Component({
   selector: 'app-board-admin',
@@ -16,6 +17,7 @@ export class BoardAdminComponent implements OnInit {
   employee: Employee = new Employee();
   employees: Employee[] | undefined;
   modalRef: NzModalRef | undefined;
+  employeeId: number;
   constructor(private employeeService: EmployeeService, private router: Router,private modalService: NzModalService,) {}
 
   ngOnInit(): void {
@@ -81,6 +83,16 @@ export class BoardAdminComponent implements OnInit {
       console.error(error);
     });
   }
+  openViewModal(id: number): void {
+    this.employeeId = id;
+    this.modalRef = this.modalService.create({
+      nzTitle: 'Employee Details',
+      nzContent: EmployeeDetailsComponent,
+      nzComponentParams: { employeeId: this.employeeId }, // Truyền employeeId vào component EmployeeDetailsComponent
+      nzFooter: null
+    });
+  }
+  
   
   
 }

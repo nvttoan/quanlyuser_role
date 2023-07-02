@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard]},
   {path:'admin/create-employees', component: CreateEmployeeComponent,canActivate: [AuthGuard]},
   {path: 'update-employee/:id', component: UpdateEmployeeComponent,canActivate: [AuthGuard]},
-  {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
+  // {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
   {path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
   { path: 'usertable/create-user', component: CreateUserComponent,canActivate: [AuthGuard] },
   {path: 'update-user/:id', component: UpdateUserComponent,canActivate: [AuthGuard]},

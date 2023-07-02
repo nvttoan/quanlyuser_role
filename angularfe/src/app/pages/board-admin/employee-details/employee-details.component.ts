@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { EmployeeService } from '../../../services/employee.service';
 import { Employee } from '../../../model/employee.model';
 
@@ -12,14 +12,17 @@ export class EmployeeDetailsComponent implements OnInit {
 
   id!: number;
   employee!: Employee;
+  employeeId: number | undefined;
  constructor(private route : ActivatedRoute, private employeeService: EmployeeService){
 
   }
- ngOnInit(): void {
-    this.id=this.route.snapshot.params['id'];
-    this.employeeService.getEmployeeById(this.id).subscribe(data =>{
-      this.employee =data;
-    })
+  ngOnInit(): void {
+    if (this.employeeId) {
+      this.employeeService.getEmployeeById(this.employeeId).subscribe(data => {
+        this.employee = data;
+      });
+    }
   }
+  
 
 }
