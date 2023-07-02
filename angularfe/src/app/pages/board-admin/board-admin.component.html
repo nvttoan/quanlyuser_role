@@ -19,7 +19,7 @@
         <td>{{ employee.age }}</td>
         <td>{{ employee.emailId }}</td>
         <td>
-          <button nz-button nzType="primary" nzSize="small" (click)="updateEmployee(employee.id)">Update</button>
+          <button nz-button nzType="primary" nzSize="small" (click)="openUpdateModal(employee.id)">Update</button>
           <button nz-button nzType="danger" nzSize="small" (click)="openDeleteModal(employee.id)" nzStyle="margin-left: 10px">Delete</button>
           <button nz-button nzType="primary" nzSize="small" (click)="openViewModal(employee.id)" nzStyle="margin-left: 10px">View</button>
 

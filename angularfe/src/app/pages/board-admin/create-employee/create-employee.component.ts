@@ -36,6 +36,7 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit(){
     console.log(this.employee);
     this.saveEmployee()
+    window.location.reload();
   }
   
 

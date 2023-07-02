@@ -5,6 +5,7 @@ import { Employee } from '../../model/employee.model';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 
 @Component({
   selector: 'app-board-admin',
@@ -67,32 +68,46 @@ export class BoardAdminComponent implements OnInit {
     }
   }
   
-  openAddModal(): void {
-    this.router.navigate(['/admin/create-employees']);
-  }
+  // openAddModal(): void {
+  //   this.router.navigate(['/admin/create-employees']);
+  // }
   
-  closeAddModal(): void {
-    this.isModalVisible = false;
-  }
-  saveEmployee(): void {
-    this.employeeService.CreateEmployee(this.employee).subscribe(data => {
-      console.log(data);
-      this.getEmployees();
-      this.closeAddModal();
-    }, error => {
-      console.error(error);
-    });
-  }
+  // closeAddModal(): void {
+  //   this.isModalVisible = false;
+  // }
+  // saveEmployee(): void {
+  //   this.employeeService.CreateEmployee(this.employee).subscribe(data => {
+  //     console.log(data);
+  //     this.getEmployees();
+  //     this.closeAddModal();
+  //   }, error => {
+  //     console.error(error);
+  //   });
+  // }
   openViewModal(id: number): void {
     this.employeeId = id;
     this.modalRef = this.modalService.create({
       nzTitle: 'Employee Details',
       nzContent: EmployeeDetailsComponent,
-      nzComponentParams: { employeeId: this.employeeId }, // Truyền employeeId vào component EmployeeDetailsComponent
+      nzComponentParams: { employeeId: this.employeeId }, 
       nzFooter: null
     });
   }
   
-  
-  
+  openAddModal(): void {
+    this.modalRef = this.modalService.create({
+      nzTitle: 'Employee Details',
+      nzContent: CreateEmployeeComponent,
+      nzFooter: null
+    });
+  }
+  openUpdateModal(id: number): void {
+    this.employeeId = id;
+    this.modalRef = this.modalService.create({
+      nzTitle: 'Update',
+      nzContent: UpdateEmployeeComponent,
+      nzComponentParams: { employeeId: this.employeeId }, 
+      nzFooter: null
+    });
+  }
 }

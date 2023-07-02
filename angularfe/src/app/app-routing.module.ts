@@ -39,7 +39,7 @@ const routes: Routes = [
 
   { path: 'moderator', component: BoardModeratorComponent,canActivate: [AuthGuard] },
   { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard]},
-  {path:'admin/create-employees', component: CreateEmployeeComponent,canActivate: [AuthGuard]},
+  // {path:'admin/create-employees', component: CreateEmployeeComponent,canActivate: [AuthGuard]},
   {path: 'update-employee/:id', component: UpdateEmployeeComponent,canActivate: [AuthGuard]},
   // {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
   {path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
