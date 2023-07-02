@@ -32,7 +32,7 @@ export class CreateUserComponent implements OnInit {
     this.userService.CreateUser(this.user).subscribe(
       data => {
         console.log(data);
-        this.gotoUserList();
+        window.location.reload();
       },
       error => {
         console.error(error);
@@ -40,9 +40,9 @@ export class CreateUserComponent implements OnInit {
     );
   }
 
-  gotoUserList() {
-    this.router.navigate(['/usertable']);
-  }
+  // gotoUserList() {
+  //   this.router.navigate(['/usertable']);
+  // }
 
   onSubmit() {
     console.log(this.user);

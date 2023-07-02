@@ -2,6 +2,8 @@ import { UserService } from './user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @Component({
   selector: 'app-usertable',
@@ -18,9 +20,10 @@ export class UsertableComponent implements OnInit {
   userIdToDelete: number | undefined;
   users: User[] | undefined ;
   copiedUsers: User[] = [];
+  modalRef: NzModalRef | undefined;
 
   
-  constructor(private userService: UserService, private router:Router){
+  constructor(private userService: UserService, private router:Router,private modalService: NzModalService){
 
   }
   ngOnInit(): void {
@@ -89,5 +92,12 @@ deleteUserConfirmed() {
       this.getUser();
     });
   }
+}
+openAddModal(): void {
+  this.modalRef = this.modalService.create({
+    nzTitle: 'Create',
+    nzContent: CreateUserComponent,
+    nzFooter: null
+  });
 }
 }

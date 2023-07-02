@@ -31,13 +31,13 @@ export class BoardAdminComponent implements OnInit {
     });
   }
 
-  employeeDetails(id: number): void {
-    this.router.navigate(['employee-details', id]);
-  }
+  // employeeDetails(id: number): void {
+  //   this.router.navigate(['employee-details', id]);
+  // }
 
-  updateEmployee(id: number): void {
-    this.router.navigate(['update-employee', id]);
-  }
+  // updateEmployee(id: number): void {
+  //   this.router.navigate(['update-employee', id]);
+  // }
 
   deleteEmployee(id: number): void {
     this.employeeService.deleteEmployee(id).subscribe(data => {
@@ -68,22 +68,6 @@ export class BoardAdminComponent implements OnInit {
     }
   }
   
-  // openAddModal(): void {
-  //   this.router.navigate(['/admin/create-employees']);
-  // }
-  
-  // closeAddModal(): void {
-  //   this.isModalVisible = false;
-  // }
-  // saveEmployee(): void {
-  //   this.employeeService.CreateEmployee(this.employee).subscribe(data => {
-  //     console.log(data);
-  //     this.getEmployees();
-  //     this.closeAddModal();
-  //   }, error => {
-  //     console.error(error);
-  //   });
-  // }
   openViewModal(id: number): void {
     this.employeeId = id;
     this.modalRef = this.modalService.create({
