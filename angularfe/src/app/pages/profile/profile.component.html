@@ -1,22 +1,24 @@
-<p>profile works!</p>
-<div class="container" *ngIf="currentUser; else loggedOut">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
-    </header>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-    <strong>Roles:</strong>
-    <ul>
-      <li *ngFor="let role of currentUser.roles">
-        {{ role }}
-      </li>
-    </ul>
-  </div>
-  
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
+<div class="container" *ngIf="currentUser; else loggedOut" >
+  <img src="https://o.vdoc.vn/data/image/2022/11/17/hinh-nen-meo-15.jpg" alt="Ảnh vuông" style="float: right; width: 200px; height: 200px;  margin-right: 150px; margin-bottom: 10px;">
+
+  <header class="jumbotron">
+    <h1>
+      <strong>{{ currentUser.username }}</strong> Profile
+    </h1>
+  </header>
+  <h2>
+    <strong>Email:</strong>
+    {{ currentUser.email }}
+  </h2>
+
+  <h2>Roles:</h2>
+  <ul>
+    <li *ngFor="let role of currentUser.roles">
+      {{ role }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
