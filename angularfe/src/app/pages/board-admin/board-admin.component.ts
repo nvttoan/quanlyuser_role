@@ -44,12 +44,12 @@ export class BoardAdminComponent implements OnInit {
   }
   
   //Modal
-  openModal(employeeId: number): void {
+  openDeleteModal(employeeId: number): void {
     this.isModalVisible = true;
     this.employeeIdToDelete = employeeId;
   }
 
-  closeModal(): void {
+  closeDeleteModal(): void {
     this.isModalVisible = false;
     this.employeeIdToDelete = undefined;
   }
