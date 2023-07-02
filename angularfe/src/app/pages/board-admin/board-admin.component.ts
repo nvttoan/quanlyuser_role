@@ -80,7 +80,7 @@ export class BoardAdminComponent implements OnInit {
   
   openAddModal(): void {
     this.modalRef = this.modalService.create({
-      nzTitle: 'Employee Details',
+      nzTitle: 'add employee',
       nzContent: CreateEmployeeComponent,
       nzFooter: null
     });

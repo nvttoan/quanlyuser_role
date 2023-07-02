@@ -95,7 +95,7 @@ deleteUserConfirmed() {
 }
 openAddModal(): void {
   this.modalRef = this.modalService.create({
-    nzTitle: 'Create',
+    nzTitle: 'add user',
     nzContent: CreateUserComponent,
     nzFooter: null
   });
