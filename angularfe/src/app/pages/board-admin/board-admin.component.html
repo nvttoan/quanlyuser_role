@@ -1,5 +1,14 @@
-  <button nz-button nzType="primary"  (click)="openAddModal()" >Thêm mới employee</button>
+  
+  
+  
+    <nz-divider></nz-divider>
+  
+<div nz-row>
+    <div nz-col [nzSpan]="24" class="search-area">
+      <button nz-button nzType="primary"  (click)="openAddModal()" >Thêm mới employee</button>
 
+    </div>
+</div>
   <h2 class="text-center" style="margin-top: 48px;">Employee List</h2>
   <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzPageIndex]="page" [nzPageSize]="size"
   [nzShowTotal]="showTotal" nzShowPagination nzShowSizeChanger

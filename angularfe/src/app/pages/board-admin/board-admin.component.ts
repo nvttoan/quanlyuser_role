@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
+import { EmployeeService } from './employee.service';
 import { Router } from '@angular/router';
-import { Employee } from '../../model/employee.model';
+import { Employee } from './employee.model';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
@@ -36,14 +36,6 @@ export class BoardAdminComponent implements OnInit {
       this.employees = data;
     });
   }
-
-  // employeeDetails(id: number): void {
-  //   this.router.navigate(['employee-details', id]);
-  // }
-
-  // updateEmployee(id: number): void {
-  //   this.router.navigate(['update-employee', id]);
-  // }
 
   deleteEmployee(id: number): void {
     this.employeeService.deleteEmployee(id).subscribe(data => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Employee } from 'src/app/model/employee.model';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { Employee } from 'src/app/pages/board-admin/employee.model';
+import { EmployeeService } from 'src/app/pages/board-admin/employee.service';
 
 @Component({
   selector: 'app-board-moderator',
