@@ -30,8 +30,8 @@
       </td>
 
       <td>
-        <button nz-button nzType="primary" nzSize="small" (click)="updateUser(user.id)">Update</button>
-        <button nz-button nzType="danger" nzSize="small" (click)="openModal(user.id)" nzStyle="margin-left: 10px">Delete</button>
+        <i nz-icon nzType="edit" nzTheme="outline" (click)="updateUser(user.id)" style="margin-right: 15px"></i>
+        <i nz-icon nzType="delete" nzTheme="outline" (click)="openModal(user.id)" ></i>
       </td>
     </tr>
   </tbody>

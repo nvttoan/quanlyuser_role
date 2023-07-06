@@ -1,15 +1,17 @@
-<ng-container>
   <button nz-button nzType="primary" nzSize="large" (click)="openAddModal()" routerLinkActive="active">Add Employee</button>
 
   <h2 class="text-center" style="margin-top: 48px;">Employee List</h2>
-  <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzShowPagination]="true" [nzPageSize]="10" >
+  <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees" [nzPageIndex]="page" [nzPageSize]="size"
+  [nzShowTotal]="showTotal" nzShowPagination nzShowSizeChanger
+      [nzTotal]="total"
+       >
     <thead>
       <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Age</th>
         <th>Email Id</th>
-        <th>Actions</th>
+        <th style="width: 10%;">Thao tác</th>
       </tr>
     </thead>
     <tbody>
@@ -19,15 +21,17 @@
         <td>{{ employee.age }}</td>
         <td>{{ employee.emailId }}</td>
         <td>
-          <button nz-button nzType="primary" nzSize="small" (click)="openUpdateModal(employee.id)">Update</button>
-          <button nz-button nzType="danger" nzSize="small" (click)="openDeleteModal(employee.id)" nzStyle="margin-left: 10px">Delete</button>
-          <button nz-button nzType="primary" nzSize="small" (click)="openViewModal(employee.id)" nzStyle="margin-left: 10px">View</button>
+          <i nz-icon nzType="edit" nzTheme="outline" (click)="openUpdateModal(employee.id)" style="margin-right: 15px"></i>
+          <i nz-icon nzType="delete" nzTheme="outline"  (click)="openDeleteModal(employee.id)" style="margin-right: 15px"></i>
+          <i nz-icon nzType="folder-view" nzTheme="outline" (click)="openViewModal(employee.id)" ></i>
 
         </td>
       </tr>
     </tbody>
   </nz-table>
-</ng-container>
+  <ng-template #showTotal>
+    Có {{total}} kết quả được tìm thấy
+</ng-template>
 
 <nz-modal [(nzVisible)]="isModalVisible" nzTitle="Confirm Delete" (nzOnCancel)="closeDeleteModal()" (nzOnOk)="deleteEmployeeConfirmed()">
   <p>Are you sure you want to delete this employee?</p>
