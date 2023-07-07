@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.spring.login.models.Employee;
+import com.bezkoder.spring.login.repository.EmployeeRepository;
 import com.bezkoder.spring.login.service.EmployeeService;
 
 @RestController
@@ -24,6 +27,7 @@ import com.bezkoder.spring.login.service.EmployeeService;
 @RequestMapping("/api/crud")
 public class EmployeeController {
     @Autowired
+    private EmployeeRepository employeeRepository;
     private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -31,8 +35,19 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public List<Employee> getAllEmployees(@RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        Page<Employee> employeePage = employeeService.getPaginatedEmployees(page, size);
+        long totalEmployees = employeeService.getTotalEmployees();
+        int totalPages = employeePage.getTotalPages();
+        List<Employee> employees = employeePage.getContent();
+
+        return employees;
+    }
+
+    @GetMapping("/employees/total")
+    public long getTotalEmployees() {
+        return employeeRepository.count();
     }
 
     @PostMapping("/employees")

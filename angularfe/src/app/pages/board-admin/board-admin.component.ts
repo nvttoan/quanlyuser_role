@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { Router } from '@angular/router';
-import { Employee } from './employee.model';
+import { Employee, IEmployee } from './employee.model';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { getDataInForm } from 'src/app/_utils/form-util';
 
 @Component({
   selector: 'app-board-admin',
@@ -14,50 +15,89 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
-  size = 10;
+  size = 5;
   page = 1;
   isModalVisible = false;
   employeeIdToDelete: number | undefined;
   employee: Employee = new Employee();
-  employees: Employee[] | undefined;
+  employees: IEmployee[] | undefined;
   modalRef: NzModalRef | undefined;
   employeeId: number;
   total: number = 0;
+  totalEmployees: number = 0;
+
   searchForm: FormGroup;
 
-  constructor(private employeeService: EmployeeService, private router: Router,private modalService: NzModalService,) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+    private modalService: NzModalService,
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({
+      id: [''],
+      email: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.getEmployees();
+    this.getTotalEmployees();
   }
 
   private getEmployees(): void {
-    this.employeeService.getEmployeesList().subscribe(data => {
-      this.employees = data;
+    const { id, email } = this.searchForm.value;
+    this.employeeService.getEmployeesList(this.page, this.size).subscribe(employees => {
+      this.employees = employees;
+      this.total = employees.length;
     });
+  }
+  private getTotalEmployees(): void {
+    this.employeeService.getTotalEmployees().subscribe(total => {
+      this.totalEmployees = total;
+    });
+  }
+  
+  onChangePage(page: number) {
+    this.page = page;
+    this.getEmployees();
+  }
+  
+  onChangeSizePage(size: number) {
+    this.page = 1;
+    this.size = size;
+    this.getEmployees();
   }
 
   deleteEmployee(id: number): void {
-    this.employeeService.deleteEmployee(id).subscribe(data => {
-      console.log(data);
+    this.employeeService.deleteEmployee(id).subscribe(() => {
+      console.log("Employee deleted");
       this.getEmployees();
     });
   }
+
+  resetForm(): void {
+    this.searchForm.reset();
+  }
+
   search() {
     this.page = 1;
-    this.size = 10;
-  }
-
-  onChangePage($event: number) {
-    this.page = $event;
-  }
-
-  onChangeSizePage($event: number) {
-    this.size = $event;
+    this.onSearch();
   }
 
   
-  //Modal
+  
+  getFromSearch()  {
+    
+  }
+
+  onSearch() {
+    
+  }
+  
+  
+  
+//modal
   openDeleteModal(employeeId: number): void {
     this.isModalVisible = true;
     this.employeeIdToDelete = employeeId;
@@ -78,31 +118,38 @@ export class BoardAdminComponent implements OnInit {
       });
     }
   }
-  
+
   openViewModal(id: number): void {
     this.employeeId = id;
     this.modalRef = this.modalService.create({
       nzTitle: 'Employee Details',
       nzContent: EmployeeDetailsComponent,
-      nzComponentParams: { employeeId: this.employeeId }, 
+      nzComponentParams: { employeeId: this.employeeId },
       nzFooter: null
     });
   }
-  
+
   openAddModal(): void {
     this.modalRef = this.modalService.create({
       nzTitle: 'add employee',
       nzContent: CreateEmployeeComponent,
       nzFooter: null
     });
+    this.modalRef.afterClose.subscribe(() => {
+      this.getEmployees();
+    });
   }
+
   openUpdateModal(id: number): void {
     this.employeeId = id;
     this.modalRef = this.modalService.create({
       nzTitle: 'Update',
       nzContent: UpdateEmployeeComponent,
-      nzComponentParams: { employeeId: this.employeeId }, 
+      nzComponentParams: { employeeId: this.employeeId },
       nzFooter: null
+    });
+    this.modalRef.afterClose.subscribe(() => {
+      this.getEmployees();
     });
   }
 }

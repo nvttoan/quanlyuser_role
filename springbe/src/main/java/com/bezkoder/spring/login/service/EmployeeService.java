@@ -1,6 +1,9 @@
 package com.bezkoder.spring.login.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bezkoder.spring.login.models.Employee;
@@ -46,5 +49,15 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("employee not exit with id:" + id));
         employeeRepository.delete(employee);
+    }
+
+    // phân trang
+    public Page<Employee> getPaginatedEmployees(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return employeeRepository.findAll(pageable);
+    }
+
+    public long getTotalEmployees() {
+        return employeeRepository.count();
     }
 }
