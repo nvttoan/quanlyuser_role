@@ -69,12 +69,12 @@ export class BoardAdminComponent implements OnInit {
     this.getEmployees();
   }
 
-  deleteEmployee(id: number): void {
-    this.employeeService.deleteEmployee(id).subscribe(() => {
-      console.log("Employee deleted");
-      this.getEmployees();
-    });
-  }
+  // deleteEmployee(id: number): void {
+  //   this.employeeService.deleteEmployee(id).subscribe(() => {
+  //     console.log("Employee deleted");
+  //     this.getEmployees();
+  //   });
+  // }
 
   resetForm(): void {
     this.searchForm.reset();

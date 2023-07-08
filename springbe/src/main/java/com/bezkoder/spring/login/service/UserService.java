@@ -2,6 +2,7 @@ package com.bezkoder.spring.login.service;
 
 import com.bezkoder.spring.login.exception.ResourceNotFoundException;
 import com.bezkoder.spring.login.models.ERole;
+import com.bezkoder.spring.login.models.Employee;
 import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
 import com.bezkoder.spring.login.models.User;
@@ -9,6 +10,9 @@ import com.bezkoder.spring.login.repository.MenuRepository;
 import com.bezkoder.spring.login.repository.RoleRepository;
 import com.bezkoder.spring.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -100,6 +104,12 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("user not delete with id:" + id));
         userRepository.delete(user);
 
+    }
+
+    // phân trang
+    public Page<User> getPaginatedUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return userRepository.findAll(pageable);
     }
 
 }

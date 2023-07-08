@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user.model';
@@ -10,8 +10,17 @@ export class UserService {
   private baseURL = "http://localhost:8080/api/crud/user";
 
   constructor(private httpClient: HttpClient) { }
-  getUserList(): Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.baseURL}`);
+  // trả về mảng các employee của page 1
+  getUserList(page: number = 1, size: number = 5): Observable<any> {
+    const params = new HttpParams()
+      .set('page', String(page))
+      .set('size', String(size));
+  
+    return this.httpClient.get<any>(`${this.baseURL}`, { params });
+  }
+  //tổng user
+  getTotalUsers(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseURL}/total`);
   }
   CreateUser(user: User):Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`,user);

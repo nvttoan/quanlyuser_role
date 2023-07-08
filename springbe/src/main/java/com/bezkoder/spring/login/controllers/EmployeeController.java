@@ -28,6 +28,7 @@ import com.bezkoder.spring.login.service.EmployeeService;
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
     private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -38,13 +39,14 @@ public class EmployeeController {
     public List<Employee> getAllEmployees(@RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         Page<Employee> employeePage = employeeService.getPaginatedEmployees(page, size);
-        long totalEmployees = employeeService.getTotalEmployees();
-        int totalPages = employeePage.getTotalPages();
+        // long totalEmployees = employeeService.getTotalEmployees();
+        // int totalPages = employeePage.getTotalPages();
         List<Employee> employees = employeePage.getContent();
 
         return employees;
     }
 
+    // lấy tổng số employee trong db
     @GetMapping("/employees/total")
     public long getTotalEmployees() {
         return employeeRepository.count();

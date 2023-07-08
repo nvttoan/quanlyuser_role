@@ -51,7 +51,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let employee of employees;let i = index">
-          <td>{{employee.id}}</td>
+          <td>{{(i + 1) + ((this.page - 1) * this.size)}}</td>
 
           <td>{{ employee.firstName }}</td>
           <td>{{ employee.lastName }}</td>

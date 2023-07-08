@@ -57,7 +57,4 @@ public class EmployeeService {
         return employeeRepository.findAll(pageable);
     }
 
-    public long getTotalEmployees() {
-        return employeeRepository.count();
-    }
 }

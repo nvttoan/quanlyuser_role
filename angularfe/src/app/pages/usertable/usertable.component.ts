@@ -4,6 +4,7 @@ import { User } from './user.model';
 import { Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-usertable',
@@ -11,74 +12,82 @@ import { CreateUserComponent } from './create-user/create-user.component';
   styleUrls: ['./usertable.component.css']
 })
 export class UsertableComponent implements OnInit {
-  currentPage = 1;
-  totalItems = 0;
-  pageSize = 5;
-  searchValue = '';
+  size =5;
+  page =1;
   visible = false;
   isModalVisible = false;
   userIdToDelete: number | undefined;
   users: User[] | undefined ;
   copiedUsers: User[] = [];
   modalRef: NzModalRef | undefined;
-
+  total: number = 0;
+  totalUsers: number = 0;
+  searchForm: FormGroup;
   
   constructor(private userService: UserService, private router:Router,private modalService: NzModalService){
 
   }
   ngOnInit(): void {
-      this.getUser();
+      this.getUsers();
+    this.getTotalUser();
       
   }
-  private getUser() {
-    this.userService.getUserList().subscribe(data => {
-      this.users = data;
-      this.totalItems = this.users?.length || 0; // Cập nhật tổng số dòng dữ liệu
-      this.updateCopiedUsers();
+  private getUsers(): void {
+    // const { id, username } = this.searchForm.value;
+    this.userService.getUserList(this.page, this.size).subscribe(users => {
+      this.users = users;
+      this.total = users.length;
+    });
+  }
+  private getTotalUser(): void {
+    this.userService.getTotalUsers().subscribe(total => {
+      this.totalUsers = total;
     });
   }
   
-  userDetails(id:number){
-    this.router.navigate(['user-details', id]);
-
-  }
-  updateUser(id: number){
-    this.router.navigate(['update-user', id]);
-  }
-  deleteUser(id: number){
-    this.userService.deleteUser(id).subscribe(data =>{
-      console.log(data);
-      this.getUser();
-    })
-  }
-  //search
-  updateCopiedUsers(): void {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.copiedUsers = this.users?.slice(startIndex, endIndex) || [];
+  onChangePage(page: number) {
+    this.page = page;
+    this.getUsers();
   }
   
-  reset(): void {
-    this.searchValue = '';
-    this.search();
+  onChangeSizePage(size: number) {
+    this.page = 1;
+    this.size = size;
+    this.getUsers();
   }
 
-  search(): void {
-    this.visible = false;
-    this.currentPage = 1; // Đặt lại trang hiện tại về 1
-    this.copiedUsers = this.users?.filter((item: User) => item.username.includes(this.searchValue)) || [];
-    this.totalItems = this.copiedUsers.length; // Cập nhật tổng số dòng dữ liệu sau khi lọc
-    this.updateCopiedUsers();
+  
+
+  resetForm(): void {
+    this.searchForm.reset();
   }
+
+  search() {
+    this.page = 1;
+    this.onSearch();
+  }
+
+  
+  
+  getFromSearch()  {
+    
+  }
+
+  onSearch() {
+    
+  }
+  
+  
+  
   
   
 //modal
-openModal(userId: number) {
+openDeleteModal(userId: number) {
   this.isModalVisible = true;
   this.userIdToDelete = userId;
 }
 
-closeModal() {
+closeDeleteModal() {
   this.isModalVisible = false;
   this.userIdToDelete = undefined;
 }
@@ -89,7 +98,7 @@ deleteUserConfirmed() {
       console.log("User deleted");
       this.isModalVisible = false;
       this.userIdToDelete = undefined;
-      this.getUser();
+      this.getUsers();
     });
   }
 }
