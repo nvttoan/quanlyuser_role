@@ -14,14 +14,14 @@ export class MenuService {
   getMenuList(): Observable<Menu[]>{
     return this.httpClient.get<Menu[]>(`${this.baseURL}`);
   }
-  CreateMenu(menu: Menu):Observable<Object>{
+  createMenu(menu: Menu):Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`,menu);
   }
   getMenuById(id: number):Observable<Menu>{
-    return this.httpClient.get<Menu>(`${this.baseURL}/${id}`);
+    return this.httpClient.get<Menu>(`${this.baseURL}/getbyid/${id}`);
   }
-  updateMenu(id: number,menu: Menu):Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`,menu);
+  updateMenuById(id: number,menu: Menu):Observable<Object>{
+    return this.httpClient.put(`${this.baseURL}/update/${id}`,menu);
   }
   deleteMenu(id: number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);

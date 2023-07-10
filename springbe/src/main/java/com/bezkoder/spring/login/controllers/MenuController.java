@@ -1,6 +1,7 @@
 package com.bezkoder.spring.login.controllers;
 
 import com.bezkoder.spring.login.models.ERole;
+import com.bezkoder.spring.login.models.Employee;
 import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.User;
 import com.bezkoder.spring.login.service.MenuService;
@@ -42,18 +43,22 @@ public class MenuController {
         return menuService.getAllMenu();
     }
 
-    // @GetMapping("/menu/{id}")
-    // public ResponseEntity<Menu> getMenuById(@PathVariable long id) {
-    // Menu menu = menuService.getMenuById(id);
-    // return ResponseEntity.ok(menu);
+    @GetMapping("/menu/getbyid/{id}")
+    public ResponseEntity<Menu> getMenuById(@PathVariable long id) {
+        Menu menu = menuService.getMenuById(id);
+        return ResponseEntity.ok(menu);
+    }
+
+    // @PostMapping("/menu")
+    // public Menu createMenu(@RequestBody Menu menu) {
+    // return menuService.createMenu(menu);
     // }
 
-    // @PutMapping("/menu/{id}")
-    // public ResponseEntity<Menu> updateMenu(@PathVariable long id, @RequestBody
-    // Menu menuDetails) {
-    // Menu menu = menuService.updateMenu(id, menuDetails);
-    // return ResponseEntity.ok(menu);
-    // }
+    @PutMapping("/menu/update/{id}")
+    public ResponseEntity<Menu> updateMenuById(@PathVariable long id, @RequestBody Menu menuDetails) {
+        Menu menu = menuService.updateMenuById(id, menuDetails);
+        return ResponseEntity.ok(menu);
+    }
 
     @DeleteMapping("/menu/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteMenu(@PathVariable long id) {

@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'menutable/menubyrole', component: EditMenubyroleComponent,canActivate: [AuthGuard] },
 
 
-  { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
+  // { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
   { path: 'changepass', component: ChangepassComponent,canActivate: [AuthGuard] },
 
 

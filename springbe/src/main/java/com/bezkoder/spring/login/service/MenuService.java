@@ -37,7 +37,11 @@ public class MenuService {
                 .orElseThrow(() -> new ResourceNotFoundException("menu not exit with id:" + id));
     }
 
-    public Menu updateMenu(long id, Menu menuDetails) {
+    public Menu createMenu(Menu menu) {
+        return menuRepository.save(menu);
+    }
+
+    public Menu updateMenuById(long id, Menu menuDetails) {
         Menu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("menu not exit with id:" + id));
 
