@@ -44,9 +44,9 @@ export class EditMenubyroleComponent implements OnInit {
     }
   }
  
-  toggleTable(role: string): void {
-    this.showTables[role] = !this.showTables[role];
-  }
+  // toggleTable(role: string): void {
+  //   this.showTables[role] = !this.showTables[role];
+  // }
 
   showModal(role: string) {
     this.currentRole = role;
@@ -72,8 +72,3 @@ export class EditMenubyroleComponent implements OnInit {
     this.isVisible = false;
   }
 }
-// const children: string[] = [];
-    // for (let i = 1; i < 36; i++) {
-    //   children.push(`${i}`);
-    // }
-    // this.listOfOption = children;
