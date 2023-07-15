@@ -13,7 +13,6 @@ export class Employee implements IEmployee {
     public lastName?: string ,
     public age?: number ,
     public emailId?: string,
-
     ){}
     
 }

@@ -1,7 +1,7 @@
 package com.bezkoder.spring.login.service;
 
 import com.bezkoder.spring.login.exception.ResourceNotFoundException;
-import com.bezkoder.spring.login.models.ERole;
+// import com.bezkoder.spring.login.models.ERole;
 import com.bezkoder.spring.login.models.Employee;
 import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
@@ -82,7 +82,7 @@ public class MenuService {
     // return menuRepository.findByRole(role);
     // }
     public List<Menu> getMenuByRole(String roleName) {
-        Role role = roleRepository.findByName(ERole.valueOf(roleName))
+        Role role = roleRepository.findByName(roleName)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found: " +
                         roleName));
 
@@ -90,7 +90,7 @@ public class MenuService {
     }
 
     public List<Menu> updateMenuByRole(String roleName, List<Long> menuIds) {
-        Role role = roleRepository.findByName(ERole.valueOf(roleName))
+        Role role = roleRepository.findByName(roleName)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found: " + roleName));
 
         List<Menu> menus = menuRepository.findAllById(menuIds);

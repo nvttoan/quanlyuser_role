@@ -1,6 +1,6 @@
 package com.bezkoder.spring.login.repository;
 
-import com.bezkoder.spring.login.models.ERole;
+// import com.bezkoder.spring.login.models.ERole;
 import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
 
