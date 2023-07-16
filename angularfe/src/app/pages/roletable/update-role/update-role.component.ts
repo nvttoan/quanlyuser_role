@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from '../role.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoleService } from '../role.service';
 
 @Component({
   selector: 'app-update-role',
@@ -7,9 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateRoleComponent implements OnInit {
 
-  constructor() { }
+  id!: number;
+  role: Role = new Role();
+  roleId: number | undefined;
+  // selectedRoles: string[] = [];
 
-  ngOnInit(): void {
+
+  // roleOptions: { name: string }[] = [
+  //   { name: 'ROLE_USER' },
+  //   { name: 'ROLE_MODERATOR' },
+  //   { name: 'ROLE_ADMIN' }
+  // ];
+  constructor(private roleService: RoleService,
+    private route: ActivatedRoute,private router: Router){
+
   }
-
+  ngOnInit(): void {
+    this.roleService.getRoleById(this.roleId).subscribe(data => {
+      this.role = data;
+      this.id = this.role.id; // Cập nhật giá trị id từ role lấy được
+    });
+  }
+  
+  
+  saveRole() {
+    // this.menu.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
+    this.roleService.updateRole(this.id, this.role).subscribe(
+      data => {
+        console.log(data);
+        window.location.reload();
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 }

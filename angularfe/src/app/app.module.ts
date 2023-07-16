@@ -1,3 +1,4 @@
+import { CreateRoleComponent } from './pages/roletable/create-role/create-role.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -30,6 +31,7 @@ import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.c
 import { EditMenubyroleComponent } from './pages/menutable/menubyrole/menubyrole.component';
 import { ChangepassComponent } from './pages/changepass/changepass.component';
 import { RoletableComponent } from './pages/roletable/roletable.component';
+import { UpdateRoleComponent } from './pages/roletable/update-role/update-role.component';
 
 registerLocaleData(en);
 
@@ -53,6 +55,8 @@ registerLocaleData(en);
     EditMenubyroleComponent,
     ChangepassComponent,
     RoletableComponent,
+    CreateRoleComponent,
+    UpdateRoleComponent
   ],
   imports: [
     BrowserModule,

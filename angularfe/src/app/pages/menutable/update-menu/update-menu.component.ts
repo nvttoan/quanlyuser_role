@@ -1,7 +1,9 @@
+import { RoleService } from './../../roletable/role.service';
 import { Component, OnInit } from '@angular/core';
 import { Menu } from '../menu.model';
 import { MenuService } from '../menu.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Role,IRole  } from '../../roletable/role.model';
 
 @Component({
   selector: 'app-update-menu',
@@ -14,24 +16,27 @@ export class UpdateMenuComponent implements OnInit {
   menu: Menu = new Menu();
   menuId: number | undefined;
   selectedRoles: string[] = [];
+  roles: Role[] | undefined;
 
-
-  roleOptions: { name: string }[] = [
-    { name: 'ROLE_USER' },
-    { name: 'ROLE_MODERATOR' },
-    { name: 'ROLE_ADMIN' }
-  ];
+  // roleService: any;
   constructor(private menuService: MenuService,
-    private route: ActivatedRoute,private router: Router){
+    private roleService: RoleService,
+    private route: ActivatedRoute,
+    private router: Router){
 
   }
   ngOnInit(): void {
+    this.getNameRoles();
     this.menuService.getMenuById(this.menuId).subscribe(data => {
       this.menu = data;
-      this.id = this.menu.id; // Cập nhật giá trị id từ menu lấy được
+      this.id = this.menu.id;
     });
   }
-  
+  private getNameRoles(): void {
+    this.roleService.getRoleList().subscribe(roles => {
+      this.roles = roles;
+    });
+  }
   
   saveMenu() {
     this.menu.roles = this.selectedRoles.map(roleName => ({ name: roleName }));

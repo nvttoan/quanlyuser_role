@@ -13,7 +13,7 @@ export class RoleService {
   constructor(private httpClient: HttpClient) { }
   
     // trả về mảng các employee của page 1
-    getRolesList(page: number = 1, size: number = 5): Observable<any> {
+    getRolesListPage(page: number = 1, size: number = 5): Observable<any> {
         const params = new HttpParams()
           .set('page', String(page))
           .set('size', String(size));
@@ -25,17 +25,17 @@ export class RoleService {
         return this.httpClient.get<number>(`${this.baseURL}/gettotalroles`);
       }
   //crud
-//   getRoleList(): Observable<Role[]>{
-//     return this.httpClient.get<Role[]>(`${this.baseURL}/rolelist`);
-//   }
+  getRoleList(): Observable<Role[]>{
+    return this.httpClient.get<Role[]>(`${this.baseURL}/rolelist`);
+  }
   CreateRole(role: Role):Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/addrole`,role);
   }
-//   getRoleById(id: number):Observable<Role>{
-//     return this.httpClient.get<Role>(`${this.baseURL}/${id}`);
-//   }
+  getRoleById(id: number):Observable<Role>{
+    return this.httpClient.get<Role>(`${this.baseURL}/getrole/${id}`);
+  }
   updateRole(id: number,role: Role):Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}/updaterole/${id}`,role);
+    return this.httpClient.put(`${this.baseURL}/updaterole/${id}`,role);
   }
   deleteRole(id: number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/deleterole/${id}`);

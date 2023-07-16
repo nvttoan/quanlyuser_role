@@ -40,10 +40,6 @@ export class CreateUserComponent implements OnInit {
     );
   }
 
-  // gotoUserList() {
-  //   this.router.navigate(['/usertable']);
-  // }
-
   onSubmit() {
     console.log(this.user);
     this.saveUser();

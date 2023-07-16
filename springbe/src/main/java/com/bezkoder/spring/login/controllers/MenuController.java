@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class MenuController {
     @Autowired
     private MenuService menuService;
+    @Autowired
     private UserService userService;
 
     public MenuController(MenuService menuService, UserService userService) {

@@ -8,12 +8,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.bezkoder.spring.login.exception.ResourceNotFoundException;
 import com.bezkoder.spring.login.models.Employee;
+import com.bezkoder.spring.login.models.Menu;
 import com.bezkoder.spring.login.models.Role;
 import com.bezkoder.spring.login.repository.RoleRepository;
 
 @Service
 public class RoleService {
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
@@ -25,17 +28,23 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
+    public Role getRoleById(long id) {
+        return roleRepository.findById(id).orElse(null);
+    }
+
     public Role addRole(Role role) {
         return roleRepository.save(role);
     }
 
-    public Role updateRole(long id, Role updatedRole) {
-        Role role = roleRepository.findById(id).orElse(null);
-        if (role != null) {
-            role.setName(updatedRole.getName());
-            return roleRepository.save(role);
-        }
-        return null;
+    public Role updateRole(long id, Role roleDetails) {
+        Role role = roleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("role not exit with id:" + id));
+
+        role.setName(roleDetails.getName());
+        role.setCode(roleDetails.getCode());
+        role.setDescription(roleDetails.getDescription());
+
+        return roleRepository.save(role);
     }
 
     public void deleteRole(long id) {

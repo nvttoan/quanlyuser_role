@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CreateRoleComponent } from './create-role/create-role.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 
 @Component({
   selector: 'app-roletable',
@@ -15,7 +17,7 @@ export class RoletableComponent implements OnInit {
   page = 1;
   id!: number;
   
-  menuIdToDelete: number | undefined;
+  roleIdToDelete: number | undefined;
   visible = false;
   isModalVisible = false;
   modalRef: NzModalRef | undefined;
@@ -24,6 +26,7 @@ export class RoletableComponent implements OnInit {
   totalRoles: number = 0;
 
   role: Role = new Role();
+  roleId: number;
 
   roles: Role[] | undefined;
   searchForm : FormGroup;
@@ -40,7 +43,7 @@ export class RoletableComponent implements OnInit {
   }
   private getRoles(): void {
     const { id, email } = this.searchForm.value;
-    this.roleService.getRolesList(this.page, this.size).subscribe(roles => {
+    this.roleService.getRolesListPage(this.page, this.size).subscribe(roles => {
       this.roles = roles;
       this.total = roles.length;
     });
@@ -83,38 +86,48 @@ export class RoletableComponent implements OnInit {
   
   
   //modal
-  // openUpdateModal(id: number): void {
-  //   this.menuId = id;
-  //   this.modalRef = this.modalService.create({
-  //     nzTitle: 'Update',
-  //     nzContent: UpdateMenuComponent,
-  //     nzComponentParams: { menuId: this.menuId },
-  //     nzFooter: null
-  //   });
-  //   this.modalRef.afterClose.subscribe(() => {
-  //     this.getMenu();
-  //   });
-  // }
+  openAddModal(): void {
+    this.modalRef = this.modalService.create({
+      nzTitle: 'add role',
+      nzContent: CreateRoleComponent,
+      nzFooter: null
+    });
+    this.modalRef.afterClose.subscribe(() => {
+      this.getRoles();
+    });
+  }
+  openUpdateModal(id: number): void {
+    this.roleId = id;
+    this.modalRef = this.modalService.create({
+      nzTitle: 'Update',
+      nzContent: UpdateRoleComponent,
+      nzComponentParams: { roleId: this.roleId },
+      nzFooter: null
+    });
+    this.modalRef.afterClose.subscribe(() => {
+      this.getRoles();
+    });
+  }
   
-  // openDeleteModal(userId: number) {
-  //   this.isModalVisible = true;
-  //   this.menuIdToDelete = userId;
-  // }
+  openDeleteModal(roleId: number) {
+    this.isModalVisible = true;
+    this.roleIdToDelete = roleId;
+  }
   
-  // closeDeleteModal() {
-  //   this.isModalVisible = false;
-  //   this.menuIdToDelete = undefined;
-  // }
+  closeDeleteModal() {
+    this.isModalVisible = false;
+    this.roleIdToDelete = undefined;
+  }
   
-  // deleteUserConfirmed() {
-  //   if (this.menuIdToDelete) {
-  //     this.menuService.deleteMenu(this.menuIdToDelete).subscribe(() => {
-  //       console.log("User deleted");
-  //       this.isModalVisible = false;
-  //       this.menuIdToDelete = undefined;
-  //       this.getMenu();
-  //     });
-  //   }
-  // }
+  deleteRoleConfirmed() {
+    if (this.roleIdToDelete) {
+      this.roleService.deleteRole(this.roleIdToDelete).subscribe(() => {
+        console.log("User deleted");
+        this.isModalVisible = false;
+        this.roleIdToDelete = undefined;
+        this.getRoles();
+      });
+    }
+  }
 
 }
