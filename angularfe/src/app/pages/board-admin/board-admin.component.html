@@ -34,7 +34,7 @@
 
       </div>
   </div>
-    <nz-table #tableData style="margin-top: 30px;"  nzShowPagination nzShowSizeChanger
+    <nz-table #tableData style="margin-block-start: 30px;"  nzShowPagination nzShowSizeChanger
     [nzTotal]="totalEmployees" [nzData]="employees" [nzPageIndex]="page" [nzPageSize]="size" [nzFrontPagination]="false"
     (nzPageIndexChange)="onChangePage($event)" (nzPageSizeChange)="onChangeSizePage($event)"
         >
@@ -46,7 +46,7 @@
           <th>Last Name</th>
           <th>Age</th>
           <th>Email</th>
-          <th style="width: 10%;">Thao tác</th>
+          <th style="inline-size: 10%;">Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -58,8 +58,8 @@
           <td>{{ employee.age }}</td>
           <td>{{ employee.emailId }}</td>
           <td>
-            <i nz-icon nzType="edit" nzTheme="outline" (click)="openUpdateModal(employee.id)" style="margin-right: 15px"></i>
-            <i nz-icon nzType="delete" nzTheme="outline"  (click)="openDeleteModal(employee.id)" style="margin-right: 15px"></i>
+            <i nz-icon nzType="edit" nzTheme="outline" (click)="openUpdateModal(employee.id)" style="margin-inline-end: 15px"></i>
+            <i nz-icon nzType="delete" nzTheme="outline"  (click)="openDeleteModal(employee.id)" style="margin-inline-end: 15px"></i>
             <i nz-icon nzType="folder-view" nzTheme="outline" (click)="openViewModal(employee.id)" ></i>
 
           </td>

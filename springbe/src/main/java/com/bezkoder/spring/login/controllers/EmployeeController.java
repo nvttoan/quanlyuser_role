@@ -39,8 +39,6 @@ public class EmployeeController {
     public List<Employee> getAllEmployees(@RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         Page<Employee> employeePage = employeeService.getPaginatedEmployees(page, size);
-        // long totalEmployees = employeeService.getTotalEmployees();
-        // int totalPages = employeePage.getTotalPages();
         List<Employee> employees = employeePage.getContent();
 
         return employees;

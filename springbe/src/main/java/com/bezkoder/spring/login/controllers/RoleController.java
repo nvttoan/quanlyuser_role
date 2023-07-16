@@ -3,6 +3,7 @@ package com.bezkoder.spring.login.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bezkoder.spring.login.models.Employee;
 import com.bezkoder.spring.login.models.Role;
+import com.bezkoder.spring.login.repository.EmployeeRepository;
+import com.bezkoder.spring.login.repository.RoleRepository;
+import com.bezkoder.spring.login.service.EmployeeService;
 import com.bezkoder.spring.login.service.RoleService;
 
 @RestController
@@ -20,11 +26,30 @@ import com.bezkoder.spring.login.service.RoleService;
 @RequestMapping("/api/crud")
 
 public class RoleController {
-    private RoleService roleService;
 
     @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private RoleService roleService;
+
     public RoleController(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    // phân trang
+    @GetMapping("/paginatedroles")
+    public List<Role> getAllRoles(@RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        Page<Role> rolePage = roleService.getPaginatedRoles(page, size);
+        List<Role> roles = rolePage.getContent();
+
+        return roles;
+    }
+
+    // lấy tổng role trong db
+    @GetMapping("/gettotalroles")
+    public long getTotalRoles() {
+        return roleRepository.count();
     }
 
     @GetMapping("/rolelist")

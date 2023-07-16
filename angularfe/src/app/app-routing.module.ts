@@ -19,6 +19,7 @@ import { CreateMenuComponent } from './pages/menutable/create-menu/create-menu.c
 import { UpdateMenuComponent } from './pages/menutable/update-menu/update-menu.component';
 import { EditMenubyroleComponent } from './pages/menutable/menubyrole/menubyrole.component';
 import { ChangepassComponent } from './pages/changepass/changepass.component';
+import { RoletableComponent } from './pages/roletable/roletable.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
 
   // { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
   { path: 'changepass', component: ChangepassComponent,canActivate: [AuthGuard] },
+  { path: 'roletable', component: RoletableComponent ,canActivate: [AuthGuard] },
 
 
   { path: 'moderator', component: BoardModeratorComponent,canActivate: [AuthGuard] },
