@@ -8,10 +8,10 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SharedModule } from './share-module'
+import { SharedModule } from './share-module';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { LoginComponent } from './login/login.component';
 
@@ -56,7 +56,7 @@ registerLocaleData(en);
     ChangepassComponent,
     RoletableComponent,
     CreateRoleComponent,
-    UpdateRoleComponent
+    UpdateRoleComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,12 +65,11 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    
+
     ReactiveFormsModule,
-    NzInputModule
+    NzInputModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
-  
 })
-export class AppModule { }
+export class AppModule {}

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })//gửi kiểu json
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }), //gửi kiểu json
 };
 
 @Injectable({
@@ -14,11 +14,12 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {//trả về Observable chứa phản hồi từ server
+  login(username: string, password: string): Observable<any> {
+    //trả về Observable chứa phản hồi từ server
     return this.http.post(
       AUTH_API + 'signin',
       {
-        username,//đầu vào người dùng login 
+        username, //đầu vào người dùng login
         password,
       },
       httpOptions
@@ -38,6 +39,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
   }
 }

@@ -2,9 +2,14 @@
   <nz-collapse-panel *ngFor="let role of roles" [nzHeader]="role">
     <button nz-button nzType="primary" (click)="showModal(role)">Edit</button>
     <nz-divider></nz-divider>
-    <ul >
-      <nz-table nzTableLayout="fixed" nzSize="middle" class="custom-table" [nzData]="['']"
-                [nzShowPagination]="false">
+    <ul>
+      <nz-table
+        nzTableLayout="fixed"
+        nzSize="middle"
+        class="custom-table"
+        [nzData]="['']"
+        [nzShowPagination]="false"
+      >
         <thead>
           <tr>
             <th>id</th>
@@ -32,13 +37,27 @@
   </nz-collapse-panel>
 </nz-collapse>
 
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Edit menu by ' + currentRole" (nzOnCancel)="handleCancel()"
-          (nzOnOk)="handleOk()">
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="'Edit menu by ' + currentRole"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
   <ng-container *nzModalContent>
-    <<nz-select [nzMaxTagCount]="7" [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
-                nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue"
-                (ngModelChange)="selectedMenuIds = $event" [nzData]="menus">
-      <nz-option *ngFor="let item of menus" [nzLabel]="item.nameMenu" [nzValue]="item.id"></nz-option>
+    <<nz-select
+      [nzMaxTagCount]="7"
+      [nzMaxTagPlaceholder]="tagPlaceHolder"
+      nzMode="multiple"
+      nzPlaceHolder="Please select"
+      [(ngModel)]="listOfSelectedValue"
+      (ngModelChange)="selectedMenuIds = $event"
+      [nzData]="menus"
+    >
+      <nz-option
+        *ngFor="let item of menus"
+        [nzLabel]="item.nameMenu"
+        [nzValue]="item.id"
+      ></nz-option>
     </nz-select>
 
     <ng-template #tagPlaceHolder let-selectedList>

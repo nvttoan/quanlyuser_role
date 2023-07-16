@@ -24,35 +24,61 @@ import { RoletableComponent } from './pages/roletable/roletable.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  {path: 'home', loadChildren: ()=> import('./pages/home/home.module').then(m => m.homeModule)},
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.homeModule),
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
-  { path: 'user', component: BoardUserComponent ,canActivate: [AuthGuard]},
-  { path: 'menutable', component: MenutableComponent,canActivate: [AuthGuard] },
-  { path: 'menutable/create-menu', component: CreateMenuComponent,canActivate: [AuthGuard] },
-  { path: 'menutable/menubyrole', component: EditMenubyroleComponent,canActivate: [AuthGuard] },
-
-
-  // { path: 'update-menu/:id', component: UpdateMenuComponent,canActivate: [AuthGuard] },
-  { path: 'changepass', component: ChangepassComponent,canActivate: [AuthGuard] },
-  { path: 'roletable', component: RoletableComponent ,canActivate: [AuthGuard] },
-
-
-  { path: 'moderator', component: BoardModeratorComponent,canActivate: [AuthGuard] },
-  { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard]},
-  // {path:'admin/create-employees', component: CreateEmployeeComponent,canActivate: [AuthGuard]},
-  // {path: 'update-employee/:id', component: UpdateEmployeeComponent,canActivate: [AuthGuard]},
-  // {path: 'employee-details/:id',component: EmployeeDetailsComponent,canActivate: [AuthGuard]},
-  {path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
-  // { path: 'usertable/create-user', component: CreateUserComponent,canActivate: [AuthGuard] },
-  {path: 'update-user/:id', component: UpdateUserComponent,canActivate: [AuthGuard]},
-  { path: '**', redirectTo: 'login' }
-
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard] },
+  {
+    path: 'menutable',
+    component: MenutableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'menutable/create-menu',
+    component: CreateMenuComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'menutable/menubyrole',
+    component: EditMenubyroleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'changepass',
+    component: ChangepassComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'roletable',
+    component: RoletableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'moderator',
+    component: BoardModeratorComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard] },
+  {
+    path: 'usertable',
+    component: UsertableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update-user/:id',
+    component: UpdateUserComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -6,41 +6,34 @@ import { RoleService } from '../role.service';
 @Component({
   selector: 'app-update-role',
   templateUrl: './update-role.component.html',
-  styleUrls: ['./update-role.component.css']
+  styleUrls: ['./update-role.component.css'],
 })
 export class UpdateRoleComponent implements OnInit {
-
   id!: number;
   role: Role = new Role();
   roleId: number | undefined;
   // selectedRoles: string[] = [];
 
-
-  // roleOptions: { name: string }[] = [
-  //   { name: 'ROLE_USER' },
-  //   { name: 'ROLE_MODERATOR' },
-  //   { name: 'ROLE_ADMIN' }
-  // ];
-  constructor(private roleService: RoleService,
-    private route: ActivatedRoute,private router: Router){
-
-  }
+  constructor(
+    private roleService: RoleService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    this.roleService.getRoleById(this.roleId).subscribe(data => {
+    this.roleService.getRoleById(this.roleId).subscribe((data) => {
       this.role = data;
       this.id = this.role.id; // Cập nhật giá trị id từ role lấy được
     });
   }
-  
-  
+
   saveRole() {
     // this.menu.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
     this.roleService.updateRole(this.id, this.role).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         window.location.reload();
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );

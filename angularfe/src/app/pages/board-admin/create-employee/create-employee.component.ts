@@ -6,38 +6,34 @@ import { Employee } from '../employee.model';
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
-  styleUrls: ['./create-employee.component.css']
+  styleUrls: ['./create-employee.component.css'],
 })
 export class CreateEmployeeComponent implements OnInit {
   employee: Employee = new Employee();
-  constructor(private employeeService: EmployeeService,
-    private router: Router){
-    
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
   form: any = {
     username: null,
-    password: null
+    password: null,
   };
   isLoggedIn = false;
-  ngOnInit(): void{
-  }
-  
-  saveEmployee(){
-    this.employeeService.CreateEmployee(this.employee).subscribe(data =>{
+  ngOnInit(): void {}
+
+  saveEmployee() {
+    this.employeeService.CreateEmployee(this.employee).subscribe((data) => {
       console.log(data);
       this.gotoEmployeeList();
     }),
-    console.error();
-    
+      console.error();
   }
-  gotoEmployeeList(){
+  gotoEmployeeList() {
     this.router.navigate(['/admin']);
   }
-  onSubmit(){
+  onSubmit() {
     console.log(this.employee);
-    this.saveEmployee()
+    this.saveEmployee();
     window.location.reload();
   }
-  
-
 }

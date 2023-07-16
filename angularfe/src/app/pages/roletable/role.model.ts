@@ -1,16 +1,14 @@
 export interface IRole {
-    id?: number;
-    name?: string;
-    code?: string ;
-    description?: string;
-
+  id?: number;
+  name?: string;
+  code?: string;
+  description?: string;
 }
 export class Role implements IRole {
-    constructor(
+  constructor(
     public id?: number,
     public name?: string,
-    public code?: string ,
-    public description?: string,
-    ){}
-    
+    public code?: string,
+    public description?: string
+  ) {}
 }

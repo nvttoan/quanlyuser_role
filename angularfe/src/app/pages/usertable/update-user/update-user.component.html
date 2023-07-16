@@ -1,40 +1,63 @@
 <div class="col-md-6 offset-md-3">
-    <h1>Update User</h1>
-    <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveUser()">
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">username</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="username" [(ngModel)]="user.username" name="username" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">email</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="email" [(ngModel)]="user.email" name="email" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">password</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="password" [(ngModel)]="user.password" name="password" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">role</nz-form-label>
-            <nz-form-control>
-                <nz-select nzMode="multiple" nzPlaceHolder="Select roles" [(ngModel)]="selectedRoles" name="roles">
-                    <nz-option *ngFor="let role of roleOptions" [nzLabel]="role.name" [nzValue]="role.name"></nz-option>
-                  </nz-select>
-                  
-                  
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-control>
-                <button nz-button nzType="primary" type="submit">Submit</button>
-            </nz-form-control>
-        </div>
-    </form>
+  <h1>Update User</h1>
+  <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveUser()">
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">username</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="username"
+          [(ngModel)]="user.username"
+          name="username"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">email</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="email"
+          [(ngModel)]="user.email"
+          name="email"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">password</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="password"
+          [(ngModel)]="user.password"
+          name="password"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">role</nz-form-label>
+      <nz-form-control>
+        <nz-select
+          nzMode="multiple"
+          nzPlaceHolder="Select roles"
+          [(ngModel)]="selectedRoles"
+          name="roles"
+        >
+          <nz-option
+            *ngFor="let role of roleOptions"
+            [nzLabel]="role.name"
+            [nzValue]="role.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Submit</button>
+      </nz-form-control>
+    </div>
+  </form>
 </div>
-
- 

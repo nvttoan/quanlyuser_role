@@ -10,7 +10,7 @@ import { MenuService } from 'src/app/pages/menutable/menu.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'DemoApp';
@@ -33,7 +33,6 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    
     this.isLoggedIn = this.storageService.isLoggedIn();
 
     if (this.isLoggedIn) {
@@ -54,26 +53,24 @@ export class AppComponent {
   private getMenu() {
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
-      this.menuService.getMenuByRole(user.roles).subscribe(data => {
+      this.menuService.getMenuByRole(user.roles).subscribe((data) => {
         this.menus = data;
       });
     }
   }
-  
+
   logout(): void {
     this.authService.logout().subscribe({
-      next: res => {
+      next: (res) => {
         window.location.reload();
 
         window.location.href = '/home';
 
-        
         this.storageService.clean();
       },
-      error: err => {
+      error: (err) => {
         console.log(err);
-      }
+      },
     });
   }
-  
 }

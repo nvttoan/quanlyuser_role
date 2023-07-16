@@ -1,61 +1,100 @@
 <div class="col-md-6 offset-md-3">
-    <h1>Update Menu</h1>
-    <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveMenu()">
+  <h1>Update Menu</h1>
+  <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveMenu()">
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">tên menu</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="menu"
+          [(ngModel)]="menu.nameMenu"
+          name="nameMenu"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">mã</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="code"
+          [(ngModel)]="menu.code"
+          name="code"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">url</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="url"
+          [(ngModel)]="menu.url"
+          name="url"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">urlparent</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="urlParent"
+          [(ngModel)]="menu.urlParent"
+          name="urlParent"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">description</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="description"
+          [(ngModel)]="menu.description"
+          name="description"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">icon</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="icon"
+          [(ngModel)]="menu.icon"
+          name="icon"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">roles</nz-form-label>
+      <nz-form-control>
+        <nz-select
+          nzMode="multiple"
+          nzPlaceHolder="Select roles"
+          [(ngModel)]="selectedRoles"
+          name="roles"
+        >
+          <nz-option
+            *ngFor="let role of roles"
+            [nzLabel]="role.name"
+            [nzValue]="role.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </div>
 
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">tên menu</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="menu" [(ngModel)]="menu.nameMenu" name="nameMenu" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">mã</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="code" [(ngModel)]="menu.code" name="code" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">url</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="url" [(ngModel)]="menu.url" name="url" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">urlparent</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="urlParent" [(ngModel)]="menu.urlParent" name="urlParent" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">description</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="description" [(ngModel)]="menu.description" name="description" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">icon</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="icon" [(ngModel)]="menu.icon" name="icon" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">roles</nz-form-label>
-            <nz-form-control>
-                <nz-select
-                    nzMode="multiple"
-                    nzPlaceHolder="Select roles"
-                    [(ngModel)]="selectedRoles"
-                    name="roles"
-                >
-                    <nz-option *ngFor="let role of roles" [nzLabel]="role.name" [nzValue]="role.name" ></nz-option>
-                </nz-select>         
-            </nz-form-control>
-        </div>
-        
-        <div nz-form-item>
-            <nz-form-control>
-                <button nz-button nzType="primary" type="submit">Submit</button>
-            </nz-form-control>
-        </div>
-    </form>
+    <div nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Submit</button>
+      </nz-form-control>
+    </div>
+  </form>
 </div>

@@ -1,53 +1,76 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
     <div class="sidebar-logo">
-      <a >
-        <img src="https://logos-world.net/wp-content/uploads/2022/01/Autobots-Logo.png" alt="logo" style="width: 24px; height: 24px; object-fit: cover;">
+      <a>
+        <img
+          src="https://logos-world.net/wp-content/uploads/2022/01/Autobots-Logo.png"
+          alt="logo"
+          style="inline-size: 24px; block-size: 24px; object-fit: cover"
+        />
 
-        <a href="#" class="navbar-brand" style="margin-left: 10px;">
-          <i  class="nav-link-icon"></i>
+        <a href="#" class="navbar-brand" style="margin-inline-start: 10px">
+          <i class="nav-link-icon"></i>
           MENU
         </a>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" >
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
       <ul *ngIf="isLoggedIn">
         <ng-container *ngIf="isLoggedIn">
-          <li nz-menu-item *ngFor="let menu of menus" [routerLink]="menu.url" routerLinkActive="ant-menu-item-selected" >
+          <li
+            nz-menu-item
+            *ngFor="let menu of menus"
+            [routerLink]="menu.url"
+            routerLinkActive="ant-menu-item-selected"
+          >
             <i nz-icon [nzType]="menu.icon" nzTheme="outline"></i>
             {{ menu.nameMenu }}
           </li>
         </ng-container>
       </ul>
       <ul>
-      <li nz-menu-item *ngIf="!isLoggedIn">
-        <span nz-icon nzType="login" nzTheme="outline"></span>
-        <span  class="nav-link" routerLink="/login">Login</span>
-      </li>
-      <li nz-menu-item *ngIf="!isLoggedIn">
-        <span nz-icon nzType="login" nzTheme="outline"></span>
-        <span  class="nav-link" routerLink="/register">Register</span>
-      </li>
-      <li nz-menu-item *ngIf="isLoggedIn">
-        <span nz-icon nzType="logout" nzTheme="outline" class="nav-link" (click)="logout()"></span>
-        <span (click)="logout()">Logout</span>
-      </li>
-    </ul>
+        <li nz-menu-item *ngIf="!isLoggedIn">
+          <span nz-icon nzType="login" nzTheme="outline"></span>
+          <span class="nav-link" routerLink="/login">Login</span>
+        </li>
+        <li nz-menu-item *ngIf="!isLoggedIn">
+          <span nz-icon nzType="login" nzTheme="outline"></span>
+          <span class="nav-link" routerLink="/register">Register</span>
+        </li>
+        <li nz-menu-item *ngIf="isLoggedIn">
+          <span
+            nz-icon
+            nzType="logout"
+            nzTheme="outline"
+            class="nav-link"
+            (click)="logout()"
+          ></span>
+          <span (click)="logout()">Logout</span>
+        </li>
+      </ul>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></span>
         </span>
       </div>
     </nz-header>

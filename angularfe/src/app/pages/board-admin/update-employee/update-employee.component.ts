@@ -6,35 +6,32 @@ import { Employee } from '../employee.model';
 @Component({
   selector: 'app-update-employee',
   templateUrl: './update-employee.component.html',
-  styleUrls: ['./update-employee.component.css']
+  styleUrls: ['./update-employee.component.css'],
 })
 export class UpdateEmployeeComponent implements OnInit {
-
   id!: number;
   employee: Employee = new Employee();
   employeeId: number | undefined;
 
-  constructor(private employeeService: EmployeeService,
-    private route: ActivatedRoute,private router: Router){
-
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-     if (this.employeeId) {
-      this.employeeService.getEmployeeById(this.employeeId).subscribe(data => {
-        this.employee = data;
-      });
+    if (this.employeeId) {
+      this.employeeService
+        .getEmployeeById(this.employeeId)
+        .subscribe((data) => {
+          this.employee = data;
+        });
     }
   }
-  saveEmployee(){
-    this.employeeService.CreateEmployee(this.employee).subscribe(data =>{
+  saveEmployee() {
+    this.employeeService.CreateEmployee(this.employee).subscribe((data) => {
       console.log(data);
       window.location.reload();
     }),
-    console.error();
-    
+      console.error();
   }
- 
-
-
-
 }

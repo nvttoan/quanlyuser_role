@@ -1,34 +1,58 @@
 <div class="col-md-6 offset-md-3">
-    <h1>Update Employee</h1>
-    <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveEmployee()">
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">First Name</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="firstName" [(ngModel)]="employee.firstName" name="firstName" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">Last Name</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="lastName" [(ngModel)]="employee.lastName" name="lastName" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">Age</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="age" [(ngModel)]="employee.age" name="age" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-label [nzRequired]="true">Email Id</nz-form-label>
-            <nz-form-control>
-                <input nz-input type="text" id="emailId" [(ngModel)]="employee.emailId" name="emailId" />
-            </nz-form-control>
-        </div>
-        <div nz-form-item>
-            <nz-form-control>
-                <button nz-button nzType="primary" type="submit">Submit</button>
-            </nz-form-control>
-        </div>
-    </form>
+  <h1>Update Employee</h1>
+  <form nz-form [nzLayout]="'vertical'" (ngSubmit)="saveEmployee()">
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">First Name</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="firstName"
+          [(ngModel)]="employee.firstName"
+          name="firstName"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">Last Name</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="lastName"
+          [(ngModel)]="employee.lastName"
+          name="lastName"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">Age</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="age"
+          [(ngModel)]="employee.age"
+          name="age"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">Email Id</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="emailId"
+          [(ngModel)]="employee.emailId"
+          name="emailId"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Submit</button>
+      </nz-form-control>
+    </div>
+  </form>
 </div>

@@ -8,11 +8,10 @@ import { RoleService } from '../../roletable/role.service';
 @Component({
   selector: 'app-menubyrole',
   templateUrl: './menubyrole.component.html',
-  styleUrls: ['./menubyrole.component.css']
-}) 
+  styleUrls: ['./menubyrole.component.css'],
+})
 export class EditMenubyroleComponent implements OnInit {
   menuByRole: { [key: string]: Menu[] | undefined } = {};
-  // roles: string[] = ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN','ROLE_TOAN'];
   showTables: { [key: string]: boolean } = {};
   isVisible = false;
   currentRole: string;
@@ -22,10 +21,13 @@ export class EditMenubyroleComponent implements OnInit {
   menus: Menu[] | undefined;
   roles: string[] = [];
 
-  constructor(private menuService: MenuService,private roleService: RoleService,) { }
+  constructor(
+    private menuService: MenuService,
+    private roleService: RoleService
+  ) {}
 
   ngOnInit(): void {
-  this.getNameRoles();
+    this.getNameRoles();
     this.fetchMenuByRole();
     this.getMenu();
   }
@@ -35,11 +37,11 @@ export class EditMenubyroleComponent implements OnInit {
       this.fetchMenuByRole();
     });
   }
-  
-  private getMenu(){
-    this.menuService.getMenuList().subscribe(data => {
+
+  private getMenu() {
+    this.menuService.getMenuList().subscribe((data) => {
       this.menus = data;
-    })
+    });
   }
   fetchMenuByRole(): void {
     for (const role of this.roles) {
@@ -55,7 +57,7 @@ export class EditMenubyroleComponent implements OnInit {
     }
   }
 
-//modal
+  //modal
   showModal(role: string) {
     this.currentRole = role;
     this.isVisible = true;
@@ -64,15 +66,17 @@ export class EditMenubyroleComponent implements OnInit {
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isVisible = false;
-    this.menuService.updateMenuByRole(this.currentRole, this.selectedMenuIds).subscribe(
-      (menus: Menu[]) => {
-        this.menuByRole[this.currentRole] = menus;
-        window.location.reload();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.menuService
+      .updateMenuByRole(this.currentRole, this.selectedMenuIds)
+      .subscribe(
+        (menus: Menu[]) => {
+          this.menuByRole[this.currentRole] = menus;
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   handleCancel(): void {

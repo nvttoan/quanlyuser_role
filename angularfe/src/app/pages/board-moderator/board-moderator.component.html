@@ -1,28 +1,22 @@
 <ng-container>
-    
-    <h2 class="text-center" style="margin-top: 48px;">Employee List</h2>
-    <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Age</th>
-          <th>Email Id</th>
+  <h2 class="text-center" style="margin-top: 48px">Employee List</h2>
+  <nz-table nzTableLayout="fixed" nzSize="middle" [nzData]="employees">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Email Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.age }}</td>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-          <td>{{ employee.firstName }}</td>
-          <td>{{ employee.lastName }}</td>
-          <td>{{ employee.age }}</td>
-
-          <td>{{ employee.emailId }}</td>
-          
-        </tr>
-      </tbody>
-    </nz-table>
-  </ng-container>
-  
-  
-  
+        <td>{{ employee.emailId }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</ng-container>

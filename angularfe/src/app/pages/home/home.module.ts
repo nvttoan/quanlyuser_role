@@ -1,4 +1,3 @@
-
 import { NgModule, SchemaMetadata } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,17 +15,19 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../../share-module';
 
-
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
+  (key) => antDesignIcons[key]
+);
 
 @NgModule({
   imports: [
-    BrowserModule,FormsModule,
+    BrowserModule,
+    FormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
     ReactiveFormsModule,
@@ -35,7 +36,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     DragDropModule,
     SharedModule,
   ],
-  declarations: [ HomeComponent ],
-  providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
+  declarations: [HomeComponent],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_ICONS, useValue: icons },
+  ],
 })
-export class homeModule { }
+export class homeModule {}

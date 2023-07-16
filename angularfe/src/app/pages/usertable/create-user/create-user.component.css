@@ -1,19 +1,19 @@
 .col-md-6.offset-md-3 {
-    max-width: 300px;
+    max-inline-size: 300px;
     margin: 0 auto;
   }
   
   form {
-    margin-top: 20px;
+    margin-block-start: 20px;
   }
   
   nz-form-item {
-    margin-bottom: 10px;
+    margin-block-end: 10px;
   }
   
   nz-form-label {
-    width: 120px;
-    text-align: left;
+    inline-size: 120px;
+    text-align: start;
   }
   
   nz-form-control {
@@ -21,5 +21,5 @@
   }
   
   button {
-    margin-left: 120px;
+    margin-inline-start: 120px;
   }

@@ -6,33 +6,30 @@ import { EmployeeService } from 'src/app/pages/board-admin/employee.service';
 @Component({
   selector: 'app-board-moderator',
   templateUrl: './board-moderator.component.html',
-  styleUrls: ['./board-moderator.component.css']
+  styleUrls: ['./board-moderator.component.css'],
 })
 export class BoardModeratorComponent implements OnInit {
-
   employees: Employee[] | undefined;
-  constructor(private employeeService: EmployeeService, private router:Router){
-
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
   onLogout() {
     this.router.navigate(['/']);
   }
   ngOnInit(): void {
-      this.getEmployees();
-      
+    this.getEmployees();
   }
-  private getEmployees(){
-    this.employeeService.getEmployeesList().subscribe(data => {
+  private getEmployees() {
+    this.employeeService.getEmployeesList().subscribe((data) => {
       this.employees = data;
-    })
+    });
   }
-  
-  employeeDetails(id:number){
-    this.router.navigate(['employee-details', id]);
 
+  employeeDetails(id: number) {
+    this.router.navigate(['employee-details', id]);
   }
-  updateEmployee(id: number){
+  updateEmployee(id: number) {
     this.router.navigate(['update-employee', id]);
   }
-  
 }

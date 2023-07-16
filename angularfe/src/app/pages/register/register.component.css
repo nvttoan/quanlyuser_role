@@ -1,12 +1,12 @@
 .form-background {
-  margin-top: 36px;
+  margin-block-start: 36px;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  block-size: 100vh;
 }
 
 .card-container {
-  max-width: 300px;
+  max-inline-size: 300px;
   padding: 20px;
   border: 1px solid #e8e8e8;
   border-radius: 5px;
@@ -14,19 +14,19 @@
 }
 
 .profile-img-card {
-  width: 96px;
-  height: 96px;
+  inline-size: 96px;
+  block-size: 96px;
   border-radius: 50%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-block-end: 20px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
 
 
 .form-group {
-  margin-bottom: 15px;
+  margin-block-end: 15px;
 }
 
 .invalid-feedback {
@@ -35,7 +35,7 @@
 }
 
 .alert {
-  margin-bottom: 15px;
+  margin-block-end: 15px;
 }
 
 .alert-warning {
@@ -51,7 +51,7 @@
 }
 
 button[nz-button] {
-  width: 100%;
+  inline-size: 100%;
 }
 
 button[nz-button][nzType="primary"] {

@@ -7,46 +7,47 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css']
+  styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
-
   roleOptions: { name: string }[] = [
     { name: 'ROLE_USER' },
     { name: 'ROLE_MODERATOR' },
-    { name: 'ROLE_ADMIN' }
+    { name: 'ROLE_ADMIN' },
   ];
   id!: number;
   user: User = new User();
-  constructor(private userService: UserService,
-    private route: ActivatedRoute,private router: Router){
-
-  }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    this.id= this.route.snapshot.params['id'];
-      this.userService.getUserById(this.id).subscribe(data =>{
-        this.user =data;
-      }),console.error();
+    this.id = this.route.snapshot.params['id'];
+    this.userService.getUserById(this.id).subscribe((data) => {
+      this.user = data;
+    }),
+      console.error();
   }
   myForm: FormGroup;
- saveUser() {
-  this.user.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
+  saveUser() {
+    this.user.roles = this.selectedRoles.map((roleName) => ({
+      name: roleName,
+    }));
 
-  this.userService.updateUser(this.user.id, this.user).subscribe(
-    data => {
-      this.goToUserList();
-    },
-    error => {
-      console.error(error);
-    }
-  );
-}
-
-selectedRoles: string[] = [];
-
-  
-  goToUserList(){
-    this.router.navigate(['/usertable']);
+    this.userService.updateUser(this.user.id, this.user).subscribe(
+      (data) => {
+        this.goToUserList();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
+  selectedRoles: string[] = [];
+
+  goToUserList() {
+    this.router.navigate(['/usertable']);
+  }
 }

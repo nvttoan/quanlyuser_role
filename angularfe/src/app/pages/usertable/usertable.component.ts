@@ -9,54 +9,53 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-usertable',
   templateUrl: './usertable.component.html',
-  styleUrls: ['./usertable.component.css']
+  styleUrls: ['./usertable.component.css'],
 })
 export class UsertableComponent implements OnInit {
-  size =5;
-  page =1;
+  size = 5;
+  page = 1;
   visible = false;
   isModalVisible = false;
   userIdToDelete: number | undefined;
-  users: User[] | undefined ;
+  users: User[] | undefined;
   copiedUsers: User[] = [];
   modalRef: NzModalRef | undefined;
   total: number = 0;
   totalUsers: number = 0;
   searchForm: FormGroup;
-  
-  constructor(private userService: UserService, private router:Router,private modalService: NzModalService){
 
-  }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private modalService: NzModalService
+  ) {}
   ngOnInit(): void {
-      this.getUsers();
+    this.getUsers();
     this.getTotalUser();
-      
   }
   private getUsers(): void {
     // const { id, username } = this.searchForm.value;
-    this.userService.getUserList(this.page, this.size).subscribe(users => {
+    this.userService.getUserList(this.page, this.size).subscribe((users) => {
       this.users = users;
       this.total = users.length;
     });
   }
   private getTotalUser(): void {
-    this.userService.getTotalUsers().subscribe(total => {
+    this.userService.getTotalUsers().subscribe((total) => {
       this.totalUsers = total;
     });
   }
-  
+
   onChangePage(page: number) {
     this.page = page;
     this.getUsers();
   }
-  
+
   onChangeSizePage(size: number) {
     this.page = 1;
     this.size = size;
     this.getUsers();
   }
-
-  
 
   resetForm(): void {
     this.searchForm.reset();
@@ -67,46 +66,36 @@ export class UsertableComponent implements OnInit {
     this.onSearch();
   }
 
-  
-  
-  getFromSearch()  {
-    
+  getFromSearch() {}
+
+  onSearch() {}
+
+  //modal
+  openDeleteModal(userId: number) {
+    this.isModalVisible = true;
+    this.userIdToDelete = userId;
   }
 
-  onSearch() {
-    
+  closeDeleteModal() {
+    this.isModalVisible = false;
+    this.userIdToDelete = undefined;
   }
-  
-  
-  
-  
-  
-//modal
-openDeleteModal(userId: number) {
-  this.isModalVisible = true;
-  this.userIdToDelete = userId;
-}
 
-closeDeleteModal() {
-  this.isModalVisible = false;
-  this.userIdToDelete = undefined;
-}
-
-deleteUserConfirmed() {
-  if (this.userIdToDelete) {
-    this.userService.deleteUser(this.userIdToDelete).subscribe(() => {
-      console.log("User deleted");
-      this.isModalVisible = false;
-      this.userIdToDelete = undefined;
-      this.getUsers();
+  deleteUserConfirmed() {
+    if (this.userIdToDelete) {
+      this.userService.deleteUser(this.userIdToDelete).subscribe(() => {
+        console.log('User deleted');
+        this.isModalVisible = false;
+        this.userIdToDelete = undefined;
+        this.getUsers();
+      });
+    }
+  }
+  openAddModal(): void {
+    this.modalRef = this.modalService.create({
+      nzTitle: 'add user',
+      nzContent: CreateUserComponent,
+      nzFooter: null,
     });
   }
-}
-openAddModal(): void {
-  this.modalRef = this.modalService.create({
-    nzTitle: 'add user',
-    nzContent: CreateUserComponent,
-    nzFooter: null
-  });
-}
 }

@@ -6,35 +6,27 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-role',
   templateUrl: './create-role.component.html',
-  styleUrls: ['./create-role.component.css']
+  styleUrls: ['./create-role.component.css'],
 })
 export class CreateRoleComponent implements OnInit {
-
   role: Role = new Role();
   selectedRoles: string[] = [];
 
-  constructor(private roleService: RoleService, private router: Router) { }
-
-  // roleOptions: { name: string }[] = [
-  //   { name: 'ROLE_USER' },
-  //   { name: 'ROLE_MODERATOR' },
-  //   { name: 'ROLE_ADMIN' }
-  // ];
+  constructor(private roleService: RoleService, private router: Router) {}
 
   ngOnInit(): void {
     // this.user.roles = [];
   }
-  
 
   saveRole() {
     // this.user.roles = this.selectedRoles.map(roleName => ({ name: roleName }));
 
     this.roleService.CreateRole(this.role).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         window.location.reload();
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -44,5 +36,4 @@ export class CreateRoleComponent implements OnInit {
     console.log(this.role);
     this.saveRole();
   }
-
 }
