@@ -1,10 +1,7 @@
 <nz-collapse>
   <nz-collapse-panel *ngFor="let role of roles" [nzHeader]="role">
-    <!-- <button nz-button nzType="primary" (click)="toggleTable(role)">Detail</button>
-    <span class="button-spacing"></span> -->
     <button nz-button nzType="primary" (click)="showModal(role)">Edit</button>
     <nz-divider></nz-divider>
-
     <ul >
       <nz-table nzTableLayout="fixed" nzSize="middle" class="custom-table" [nzData]="['']"
                 [nzShowPagination]="false">

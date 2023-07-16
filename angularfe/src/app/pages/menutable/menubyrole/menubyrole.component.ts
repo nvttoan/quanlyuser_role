@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Menu } from 'src/app/pages/menutable/menu.model';
+import { Role } from '../../roletable/role.model';
+import { RoleService } from '../../roletable/role.service';
 
 @Component({
   selector: 'app-menubyrole',
@@ -9,8 +11,8 @@ import { Menu } from 'src/app/pages/menutable/menu.model';
   styleUrls: ['./menubyrole.component.css']
 }) 
 export class EditMenubyroleComponent implements OnInit {
-  roles: string[] = ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'];
-  menuByRole: { [key: string]: Menu[] } = {};
+  menuByRole: { [key: string]: Menu[] | undefined } = {};
+  // roles: string[] = ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN','ROLE_TOAN'];
   showTables: { [key: string]: boolean } = {};
   isVisible = false;
   currentRole: string;
@@ -18,13 +20,22 @@ export class EditMenubyroleComponent implements OnInit {
   listOfSelectedValue = [];
   selectedMenuIds: number[] = [];
   menus: Menu[] | undefined;
-  constructor(private menuService: MenuService) { }
+  roles: string[] = [];
+
+  constructor(private menuService: MenuService,private roleService: RoleService,) { }
 
   ngOnInit(): void {
-  
+  this.getNameRoles();
     this.fetchMenuByRole();
     this.getMenu();
   }
+  getNameRoles(): void {
+    this.roleService.getRoleList().subscribe((roles: Role[]) => {
+      this.roles = roles.map((role: Role) => role.name);
+      this.fetchMenuByRole();
+    });
+  }
+  
   private getMenu(){
     this.menuService.getMenuList().subscribe(data => {
       this.menus = data;
@@ -43,11 +54,8 @@ export class EditMenubyroleComponent implements OnInit {
       );
     }
   }
- 
-  // toggleTable(role: string): void {
-  //   this.showTables[role] = !this.showTables[role];
-  // }
 
+//modal
   showModal(role: string) {
     this.currentRole = role;
     this.isVisible = true;

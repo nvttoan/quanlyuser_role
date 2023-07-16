@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { Role } from '../../roletable/role.model';
+import { RoleService } from '../../roletable/role.service';
 
 @Component({
   selector: 'app-create-user',
@@ -12,19 +14,25 @@ export class CreateUserComponent implements OnInit {
 
   user: User = new User();
   selectedRoles: string[] = [];
+  roles: Role[] | undefined;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private roleService: RoleService, private router: Router) { }
 
-  roleOptions: { name: string }[] = [
-    { name: 'ROLE_USER' },
-    { name: 'ROLE_MODERATOR' },
-    { name: 'ROLE_ADMIN' }
-  ];
+  // roleOptions: { name: string }[] = [
+  //   { name: 'ROLE_USER' },
+  //   { name: 'ROLE_MODERATOR' },
+  //   { name: 'ROLE_ADMIN' }
+  // ];
 
   ngOnInit(): void {
+    this.getNameRoles();
     this.user.roles = [];
   }
-  
+  private getNameRoles(): void {
+    this.roleService.getRoleList().subscribe(roles => {
+      this.roles = roles;
+    });
+  }
 
   saveUser() {
     this.user.roles = this.selectedRoles.map(roleName => ({ name: roleName }));

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../usertable/user.model';
 import { Menu } from './menu.model';
+import { Role } from '../roletable/role.model';
 
 @Injectable({
   providedIn: 'root'
