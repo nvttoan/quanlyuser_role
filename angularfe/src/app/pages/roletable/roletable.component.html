@@ -79,12 +79,12 @@
             (click)="openDeleteModal(role.id)"
             style="margin-inline-end: 15px"
           ></i>
-          <i
+          <!-- <i
             nz-icon
             nzType="folder-view"
             nzTheme="outline"
             (click)="openViewModal(role.id)"
-          ></i>
+          ></i> -->
         </td>
       </tr>
     </tbody>
@@ -96,6 +96,7 @@
     nzTitle="Confirm Delete"
     (nzOnCancel)="closeDeleteModal()"
     (nzOnOk)="deleteRoleConfirmed()"
+    [nzOkType]="'danger'"
   >
     <p>Are you sure you want to delete this role?</p>
   </nz-modal>
