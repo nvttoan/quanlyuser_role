@@ -22,7 +22,7 @@ import { ChangepassComponent } from './pages/changepass/changepass.component';
 import { RoletableComponent } from './pages/roletable/roletable.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   {
     path: 'home',
