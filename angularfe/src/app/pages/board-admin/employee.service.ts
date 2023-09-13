@@ -23,7 +23,23 @@ export class EmployeeService {
   getTotalEmployees(): Observable<number> {
     return this.httpClient.get<number>(`${this.baseURL}/total`);
   }
+  //search
+  searchEmployees(
+    firstName: string | null,
+    lastName: string | null,
+    age: number | null,
+    emailId: string | null
+  ): Observable<Employee[]> {
+    const params = new HttpParams()
+      .set('firstName', firstName ? firstName : '')
+      .set('lastName', lastName ? lastName : '')
+      .set('age', age !== null ? age.toString() : '')
+      .set('emailId', emailId ? emailId : '');
 
+    return this.httpClient.get<Employee[]>(`${this.baseURL}/search`, {
+      params,
+    });
+  }
   //crud
   CreateEmployee(employee: Employee): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, employee);

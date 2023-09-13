@@ -72,6 +72,9 @@ public class AuthController {
         .body(new UserInfoResponse(userDetails.getId(),
             userDetails.getUsername(),
             userDetails.getEmail(),
+            userDetails.getName(),
+            userDetails.getPosition(),
+            userDetails.getAge(),
             roles));
   }
 
@@ -87,7 +90,7 @@ public class AuthController {
 
     // Create new user's account
     User user = new User(signUpRequest.getUsername(),
-        signUpRequest.getEmail(),
+        signUpRequest.getEmail(), signUpRequest.getName(), signUpRequest.getPosition(), signUpRequest.getAge(),
         encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();

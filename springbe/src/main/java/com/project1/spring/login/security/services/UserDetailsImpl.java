@@ -10,8 +10,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.project1.spring.login.models.User;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Setter
+@Getter
 // lấy chi tiết thông tin user để xác thực cho sercurity
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
@@ -22,16 +28,23 @@ public class UserDetailsImpl implements UserDetails {
 
   private String email;
 
+  private String name;
+  private String position;
+  private Long age;
   @JsonIgnore
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImpl(Long id, String username, String email, String password,
+  public UserDetailsImpl(Long id, String username, String email, String name, String position, Long age,
+      String password,
       Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.username = username;
     this.email = email;
+    this.name = name;
+    this.position = position;
+    this.age = age;
     this.password = password;
     this.authorities = authorities;
   }
@@ -45,6 +58,9 @@ public class UserDetailsImpl implements UserDetails {
         user.getId(),
         user.getUsername(),
         user.getEmail(),
+        user.getName(),
+        user.getPosition(),
+        user.getAge(),
         user.getPassword(),
         authorities);
   }

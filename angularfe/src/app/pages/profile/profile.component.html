@@ -20,8 +20,20 @@
     <strong>Email:</strong>
     {{ currentUser.email }}
   </h2>
+  <h2>
+    <strong>Họ và Tên:</strong>
+    {{ currentUser.name }}
+  </h2>
+  <h2>
+    <strong>Chức Vụ:</strong>
+    {{ currentUser.position }}
+  </h2>
+  <h2>
+    <strong>Tuổi:</strong>
+    {{ currentUser.age }}
+  </h2>
 
-  <h2>Roles:</h2>
+  <h2><strong>Roles:</strong></h2>
   <ul>
     <li *ngFor="let role of currentUser.roles">
       {{ role }}

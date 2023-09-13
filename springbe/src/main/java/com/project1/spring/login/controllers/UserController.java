@@ -1,6 +1,5 @@
 package com.project1.spring.login.controllers;
 
-import com.project1.spring.login.models.Employee;
 import com.project1.spring.login.models.User;
 import com.project1.spring.login.repository.UserRepository;
 import com.project1.spring.login.service.UserService;

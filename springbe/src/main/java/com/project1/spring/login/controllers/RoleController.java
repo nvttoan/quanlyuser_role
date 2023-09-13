@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project1.spring.login.models.Employee;
 import com.project1.spring.login.models.Role;
-import com.project1.spring.login.repository.EmployeeRepository;
 import com.project1.spring.login.repository.RoleRepository;
-import com.project1.spring.login.service.EmployeeService;
 import com.project1.spring.login.service.RoleService;
 
 @RestController

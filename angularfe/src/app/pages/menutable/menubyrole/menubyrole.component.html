@@ -1,6 +1,8 @@
 <nz-collapse>
   <nz-collapse-panel *ngFor="let role of roles" [nzHeader]="role">
-    <button nz-button nzType="primary" (click)="showModal(role)">Edit</button>
+    <button nz-button nzType="primary" (click)="showModal(role)">
+      Chỉnh sửa
+    </button>
     <nz-divider></nz-divider>
     <ul>
       <nz-table

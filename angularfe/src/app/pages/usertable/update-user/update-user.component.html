@@ -26,6 +26,42 @@
       </nz-form-control>
     </div>
     <div nz-form-item>
+      <nz-form-label [nzRequired]="true">name</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="name"
+          [(ngModel)]="user.name"
+          name="name"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">position</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="position"
+          [(ngModel)]="user.position"
+          position="position"
+        />
+      </nz-form-control>
+    </div>
+    <div nz-form-item>
+      <nz-form-label [nzRequired]="true">age</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="number"
+          id="age"
+          [(ngModel)]="user.age"
+          name="age"
+        />
+      </nz-form-control>
+    </div>
+    <!-- <div nz-form-item>
       <nz-form-label [nzRequired]="true">password</nz-form-label>
       <nz-form-control>
         <input
@@ -36,7 +72,7 @@
           name="password"
         />
       </nz-form-control>
-    </div>
+    </div> -->
     <div nz-form-item>
       <nz-form-label [nzRequired]="true">role</nz-form-label>
       <nz-form-control>

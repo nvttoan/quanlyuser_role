@@ -12,7 +12,7 @@ import { getDataInForm } from 'src/app/_utils/form-util';
 @Component({
   selector: 'app-board-admin',
   templateUrl: './board-admin.component.html',
-  styleUrls: ['./board-admin.component.css']
+  styleUrls: ['./board-admin.component.css'],
 })
 export class BoardAdminComponent implements OnInit {
   size = 5;
@@ -35,8 +35,11 @@ export class BoardAdminComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.searchForm = this.formBuilder.group({
-      id: [''],
-      email: ['']
+      id: [''], // Thêm tất cả các trường tìm kiếm ở đây
+      firstName: [''],
+      lastName: [''],
+      age: [''],
+      email: [''],
     });
   }
 
@@ -47,22 +50,24 @@ export class BoardAdminComponent implements OnInit {
 
   private getEmployees(): void {
     const { id, email } = this.searchForm.value;
-    this.employeeService.getEmployeesList(this.page, this.size).subscribe(employees => {
-      this.employees = employees;
-      this.total = employees.length;
-    });
+    this.employeeService
+      .getEmployeesList(this.page, this.size)
+      .subscribe((employees) => {
+        this.employees = employees;
+        this.total = employees.length;
+      });
   }
   private getTotalEmployees(): void {
-    this.employeeService.getTotalEmployees().subscribe(total => {
+    this.employeeService.getTotalEmployees().subscribe((total) => {
       this.totalEmployees = total;
     });
   }
-  
+
   onChangePage(page: number) {
     this.page = page;
     this.getEmployees();
   }
-  
+
   onChangeSizePage(size: number) {
     this.page = 1;
     this.size = size;
@@ -73,24 +78,7 @@ export class BoardAdminComponent implements OnInit {
     this.searchForm.reset();
   }
 
-  search() {
-    this.page = 1;
-    this.onSearch();
-  }
-
-  
-  
-  getFromSearch()  {
-    
-  }
-
-  onSearch() {
-    
-  }
-  
-  
-  
-//modal
+  //modal
   openDeleteModal(employeeId: number): void {
     this.isModalVisible = true;
     this.employeeIdToDelete = employeeId;
@@ -103,12 +91,14 @@ export class BoardAdminComponent implements OnInit {
 
   deleteEmployeeConfirmed(): void {
     if (this.employeeIdToDelete) {
-      this.employeeService.deleteEmployee(this.employeeIdToDelete).subscribe(() => {
-        console.log("Employee deleted");
-        this.isModalVisible = false;
-        this.employeeIdToDelete = undefined;
-        this.getEmployees();
-      });
+      this.employeeService
+        .deleteEmployee(this.employeeIdToDelete)
+        .subscribe(() => {
+          console.log('Employee deleted');
+          this.isModalVisible = false;
+          this.employeeIdToDelete = undefined;
+          this.getEmployees();
+        });
     }
   }
 
@@ -118,7 +108,7 @@ export class BoardAdminComponent implements OnInit {
       nzTitle: 'Employee Details',
       nzContent: EmployeeDetailsComponent,
       nzComponentParams: { employeeId: this.employeeId },
-      nzFooter: null
+      nzFooter: null,
     });
   }
 
@@ -126,7 +116,7 @@ export class BoardAdminComponent implements OnInit {
     this.modalRef = this.modalService.create({
       nzTitle: 'add employee',
       nzContent: CreateEmployeeComponent,
-      nzFooter: null
+      nzFooter: null,
     });
     this.modalRef.afterClose.subscribe(() => {
       this.getEmployees();
@@ -139,7 +129,7 @@ export class BoardAdminComponent implements OnInit {
       nzTitle: 'Update',
       nzContent: UpdateEmployeeComponent,
       nzComponentParams: { employeeId: this.employeeId },
-      nzFooter: null
+      nzFooter: null,
     });
     this.modalRef.afterClose.subscribe(() => {
       this.getEmployees();
